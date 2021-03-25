@@ -73,6 +73,7 @@ class Product(models.Model):
     weight = models.DecimalField('Вес', max_digits=10, decimal_places=2)
     quantity = models.DecimalField('Количество', max_digits=10, decimal_places=2)
     price = models.DecimalField('Стоимость', max_digits=10, decimal_places=2)
+    seller = models.ForeignKey('Seller', on_delete=models.CASCADE, null=False)
 
     def __str__(self):
         return self.title
