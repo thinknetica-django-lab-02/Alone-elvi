@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ flatpage.title }}</title>
-</head>
-<body>
-{% load flatpages %}
-{% get_flatpages as flatpages %}
-    <ul>
-        {% for page in flatpages %}
-        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'pages/base.html' %}
+
+{% block content %}
+{{ flatpage.content }}
+{% endblock %}
