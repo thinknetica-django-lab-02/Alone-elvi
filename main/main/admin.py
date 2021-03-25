@@ -11,5 +11,6 @@ class FlatPageCustom(FlatPageAdmin):
         models.TextField: {'widget': CKEditorWidget}
     }
 
+
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, FlatPageCustom)
