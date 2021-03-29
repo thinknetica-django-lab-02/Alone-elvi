@@ -1,5 +1,7 @@
 {% extends 'pages/base.html' %}
-
+{% block header%}
+    {% include "pages/header.html" with turn_on_block=turn_on_block username=username%}
+{% endblock %}
 {% block content %}
 {% if turn_on_block %}
     <div class="row-fluid">
