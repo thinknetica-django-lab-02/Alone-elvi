@@ -14,3 +14,4 @@ def server_current_time():
 def change_first_last_chars_in_string(string):
     """Меняем первый и последний символ строки местами"""
     return string[-1:] + string[1:-1] + string[:1]
+
