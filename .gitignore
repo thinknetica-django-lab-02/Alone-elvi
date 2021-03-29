@@ -216,3 +216,4 @@ ENV/
 /thinktetika/main/migrations/
 /thinktetika/main/static/
 /thinktetika/thinktetika/migrations/
+/thinktetika/main/templatetags/__init__.py
