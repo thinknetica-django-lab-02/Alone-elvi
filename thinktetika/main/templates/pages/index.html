@@ -1,0 +1,10 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+{% if turn_on_block %}
+    <div class="row-fluid">
+        <h2>Блок который появляется</h2>
+    </div>
+{% endif%}
+{{ username|default:"Пользователь не обнаружен" }}
+{% endblock %}
