@@ -3,7 +3,6 @@
         <ul>
         {% for good in object_list %}
             <li><a href="{{ good.get_absolute_url }}\goods\{{good.pk}}">{{ good.title }}</a> ({{good.category}})</li>
-<!--            {*<li><a href="{{ good.get_absolute_url }}">{{ good.title }}</a> ({{good.category}})</li>}*}-->
         {% endfor %}
     </ul>
 {% endblock %}
