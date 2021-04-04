@@ -1,10 +1,13 @@
 {% extends 'pages/base.html' %}
+{% load thumbnail %}
 {% block content %}
     <h2> Наименование : {{ object.title|default:"Наименование не определено" }} </h2>
     <p> Артикул: {{object.sku }}</p>
     <p> Размер: {{object.size }}</p>
     <p> Категория: {{object.category }}</p>
-    <p> Тэги: {{ object.tags|default:"Тегов не определено" }}</p>
+    {% thumbnail object.image "100x100" crop="center" as im %}
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    {% endthumbnail %}<br>
     <p> Вес: {{object.weight }}</p>
     <p> Количество: {{object.quantity }}</p>
     <p> Цена: {{object.price }}</p>

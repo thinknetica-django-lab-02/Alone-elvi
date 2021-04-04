@@ -1,4 +1,6 @@
 {% load flatpages %}
+{% load thumbnail %}
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">Logo</a>
@@ -10,20 +12,24 @@
             {% get_flatpages as flatpages %}
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 {% for page in flatpages %}
-                    {% if page.title == 'Профиль'%}
-                        {% if user.is_authenticated %}
-                            <li class="nabvar-item">
-                                <a class="nav-link" href="{{ page.url }}">{{ page.title }}</a>
-                            </li>
-                        {% endif %}
-                    {% else %}
-                        <li class="nav-item"><a class="nav-link" href="{{ page.url }}">{{ page.title }}</a></li>
-                    {% endif %}
+                {% if page.title == 'Профиль'%}
+                {% if user.is_authenticated %}
+                <li class="nabvar-item">
+                    <a class="nav-link" href="{{ page.url }}">{{ page.title }}</a>
+                </li>
+                {% endif %}
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endif %}
                 {% endfor %}
             </ul>
             <form class="d-flex">
                 {% if user.is_authenticated %}
-                    <strong><a class="nav-link" href="{% url 'profile-update' %}">{{ user.get_username }}</a></strong>
+                {% thumbnail user.profile.avatar "30x30" crop="center" as im %}
+                <a href="{% url 'profile-update' %}">
+                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></a>
+                {% endthumbnail %}
+                <strong><a class="nav-link" href="{% url 'profile-update' %}">{{ user.get_username }}</a></strong>
                 {% endif%}
                 <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Поиск</button>

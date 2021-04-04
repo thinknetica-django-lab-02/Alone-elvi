@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from sorl.thumbnail import ImageField
 
 from .validators.validators import validate_age
 
@@ -99,6 +100,7 @@ class Product(models.Model):
     """
     title = models.CharField('Название', max_length=150, default='')
     sku = models.CharField('Артикул', max_length=20, default='')
+    image = models.ImageField('Изображение', upload_to='products/', null=True, blank=True)
     size = models.ForeignKey('Size', on_delete=models.CASCADE)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag')
@@ -121,6 +123,7 @@ class Profile(models.Model):
     """Класс Profile используется для работы с профилями пользователей"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birth_date = models.DateField('Дата рождения', validators=[validate_age], default=timezone.now().date())
+    avatar = models.ImageField('Аватар', upload_to='avatars/', null=True, blank=True)
 
     def __str__(self):
         """Метод возвращает название имя пользователя"""

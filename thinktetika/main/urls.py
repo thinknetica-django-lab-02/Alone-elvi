@@ -13,18 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
+from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 from django.conf.urls import include
+from django.urls import path
 from .views import index, GoodsListView, GoodsDetalView, CreateProduct, UpdateProduct
 from main.models import Product
-from django.conf.urls import url
-
 
 urlpatterns = [
-    path('', index, name='index'),
-    url(r'^goods/$', GoodsListView.as_view(), name='goods'),
-    url(r'^goods/(?P<pk>\d+)/$', GoodsDetalView.as_view(model=Product), name='good-detail'),
-    url(r'^goods/add$', CreateProduct.as_view(), name='good-add'),
-    path('goods/<int:pk>/edit', UpdateProduct.as_view(), name='good-edit'),
-]
-
+                  path('', index, name='index'),
+                  url(r'^goods/$', GoodsListView.as_view(), name='goods'),
+                  url(r'^goods/(?P<pk>\d+)/$', GoodsDetalView.as_view(model=Product), name='good-detail'),
+                  url(r'^goods/add$', CreateProduct.as_view(), name='good-add'),
+                  path('goods/<int:pk>/edit', UpdateProduct.as_view(), name='good-edit'),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
