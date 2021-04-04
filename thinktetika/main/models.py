@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
+
+from .validators.validators import validate_age
 
 
 class Contacts(models.Model):
@@ -117,13 +120,11 @@ class Product(models.Model):
 class Profile(models.Model):
     """Класс Profile используется для работы с профилями пользователей"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField('Имя', max_length=255)
-    last_name = models.CharField('Фамилия', max_length=255)
-    email = models.EmailField()
+    birth_date = models.DateField('Дата рождения', validators=[validate_age], default=timezone.now().date())
 
     def __str__(self):
-        """Метод возвращает название Фамилию, Имя и e-mail пользователя."""
-        return "Фамилия {} Имя {} - e-mail {}".format(self.last_name, self.first_name, self.email)
+        """Метод возвращает название имя пользователя"""
+        return self.user.username
 
     class Meta:
         """Класс формирующий название в единственном и множественном числах"""

@@ -1,15 +1,10 @@
-from time import timezone
-import logging
-from django import forms
-from django.shortcuts import get_object_or_404, redirect
-
-logger = logging.getLogger(__name__)
-
+from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, UpdateView
-from .models import Product, Tag, Profile
-from .forms import ProfileForm
-from django.contrib import messages
+from django.views.generic import DetailView, ListView, UpdateView
+
+from .forms import UserForm, ProfileForm
+from .models import Product
 
 
 def index(request):
@@ -54,14 +49,37 @@ class GoodsDetalView(DetailView):
 
 class ProfileUpdate(UpdateView):
     """Класс ProfileUpdate используется в шаблоне pages/profile.html и доступно по адресу /accounts/profile/"""
-    model = Profile
-    form_class = ProfileForm
+    model = User
+    form_class = UserForm
     template_name = 'pages/profile.html'
+    success_url = '/accounts/profile/'
 
     def get_object(self, queryset=None):
         return super(ProfileUpdate, self).get_queryset().get()
 
-    def form_valid(self, form):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['profile_form'] = ProfileForm(instance=self.get_object(kwargs['request']))
+        return context
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object(request)
+        return self.render_to_response(self.get_context_data(request=request))
+
+    def form_valid_formset(self, form, formset):
+        if formset.is_valid():
+            formset.save(commit=False)
+            formset.save()
+        else:
+            return HttpResponseRedirect(self.get_success_url())
         form.save()
-        messages.success(self.request, "Профиль пользователя был обновлён")
-        return redirect('profile-update')
+        return HttpResponseRedirect(self.get_success_url())
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object(request)
+        form = self.get_form()
+        profile_form = ProfileForm(self.request.POST, self.request.FILES, instance=self.object)
+        if form.is_valid():
+            return render(request, self.template_name, {'form': form, 'profile_form': profile_form})
+        else:
+            return self.form_invalid(form)

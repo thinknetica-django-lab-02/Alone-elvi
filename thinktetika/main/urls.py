@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import path
 from django.conf.urls import include
 from .views import index, GoodsListView, GoodsDetalView
-from .models import Product
+from main.models import Product
 from django.conf.urls import url
 
 
