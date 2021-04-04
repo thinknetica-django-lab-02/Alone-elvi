@@ -1,0 +1,11 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}Внести изменения.{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+{% endblock %}

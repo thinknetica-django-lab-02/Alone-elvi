@@ -9,4 +9,5 @@
     <p> Количество: {{object.quantity }}</p>
     <p> Цена: {{object.price }}</p>
     <p> Продавец: {{object.seller }}</p>
+    <a class="btn btn-primary" href="{% url 'good-detail' object.pk %}edit">Редактировать</a>
 {% endblock %}
