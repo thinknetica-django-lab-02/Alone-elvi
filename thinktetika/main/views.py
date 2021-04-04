@@ -1,11 +1,15 @@
 from time import timezone
 import logging
+from django import forms
+from django.shortcuts import get_object_or_404, redirect
 
 logger = logging.getLogger(__name__)
 
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from .models import Product, Tag
+from django.views.generic import ListView, DetailView, UpdateView
+from .models import Product, Tag, Profile
+from .forms import ProfileForm
+from django.contrib import messages
 
 
 def index(request):
@@ -46,3 +50,18 @@ class GoodsDetalView(DetailView):
     """класс GoodsDetalView выводит данные по единице товара из таблицы Product в шаблон good-detail.html"""
     model = Product
     template_name = 'pages/good-detail.html'
+
+
+class ProfileUpdate(UpdateView):
+    """Класс ProfileUpdate используется в шаблоне pages/profile.html и доступно по адресу /accounts/profile/"""
+    model = Profile
+    form_class = ProfileForm
+    template_name = 'pages/profile.html'
+
+    def get_object(self, queryset=None):
+        return super(ProfileUpdate, self).get_queryset().get()
+
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, "Профиль пользователя был обновлён")
+        return redirect('profile-update')
