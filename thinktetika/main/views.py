@@ -1,10 +1,10 @@
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import DetailView, ListView, UpdateView
+from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
 from .forms import UserForm, ProfileForm
-from .models import Product
+from .models import Product, Tag
 
 
 
@@ -58,9 +58,14 @@ class GoodsDetalView(DetailView):
     model = Product
     template_name = 'pages/good-detail.html'
 <<<<<<< HEAD
+    success_url = '/goods/'
+||||||| 4710e6f
+=======
+<<<<<<< HEAD
 ||||||| 34ba96f
 
 =======
+>>>>>>> main
 
 
 class ProfileUpdate(UpdateView):
@@ -71,18 +76,22 @@ class ProfileUpdate(UpdateView):
     success_url = '/accounts/profile/'
 
     def get_object(self, queryset=None):
+        """Метод получения и возврата данных из queryset"""
         return super(ProfileUpdate, self).get_queryset().get()
 
     def get_context_data(self, **kwargs):
+        """Метод получает и возвращает данные из формы"""
         context = super().get_context_data(**kwargs)
         context['profile_form'] = ProfileForm(instance=self.get_object(kwargs['request']))
         return context
 
     def get(self, request, *args, **kwargs):
+        """Метод возвращает шаблон с переданным словарём для выполнения"""
         self.object = self.get_object(request)
         return self.render_to_response(self.get_context_data(request=request))
 
     def form_valid_formset(self, form, formset):
+        """Метод проверки данных введённых в форме"""
         if formset.is_valid():
             formset.save(commit=False)
             formset.save()
@@ -92,6 +101,7 @@ class ProfileUpdate(UpdateView):
         return HttpResponseRedirect(self.get_success_url())
 
     def post(self, request, *args, **kwargs):
+        """Метод возвращает шаблон с переданным словарём или ошибку заполнения формы"""
         self.object = self.get_object(request)
         form = self.get_form()
         profile_form = ProfileForm(self.request.POST, self.request.FILES, instance=self.object)
@@ -99,4 +109,26 @@ class ProfileUpdate(UpdateView):
             return render(request, self.template_name, {'form': form, 'profile_form': profile_form})
         else:
             return self.form_invalid(form)
+<<<<<<< HEAD
+
+
+class CreateProduct(CreateView):
+    """Класс CreateProduct, предназначен для создания нового товара"""
+    model = Product
+    template_name = 'pages/good-add.html'
+    fields = '__all__'
+    template_name_suffix = '_create_form'
+    success_url = '/goods/'
+
+
+class UpdateProduct(UpdateView):
+    """Класс UpdateProduct, предназначен для редактирования текщего товара"""
+    model = Product
+    template_name = 'pages/good-edit.html'
+    fields = '__all__'
+    template_name_suffix = '_update_form'
+    success_url = '/goods/'
+||||||| 4710e6f
+=======
+>>>>>>> main
 >>>>>>> main
