@@ -1,18 +1,8 @@
 {% extends 'pages/base.html' %}
 {% block content %}
-<div class="row">
-    <div class="col-6 offset-3 text-center">
         <ul>
-            {% for good in object_list %}
-                <li><a href="{% url 'goods' %}{{good.pk }}">{{ good.title }}</a> ({{good.category}})</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="col-3">
-        {% include "snippets/tags_links.html" with tags=tags%}
-    </div>
-    <div class="col-12">
-        {% include "snippets/pagination.html" with page_obj=page_obj%}
-    </div>
-</div>
+        {% for good in object_list %}
+            <li><a href="{{ good.get_absolute_url }}\goods\{{good.pk}}">{{ good.title }}</a> ({{good.category}})</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
