@@ -1,4 +1,4 @@
-from main.models import Product, Size, Seller, Category, Contacts
+from main.main.models import Product, Size, Category
 
 category = Category.objects.create(title="Одежда")
 
