@@ -1,5 +1,13 @@
 from django.db import models
+<<<<<<< HEAD
 from django.contrib.auth.models import User
+from django.utils import timezone
+
+from .validators.validators import validate_age
+||||||| merged common ancestors
+=======
+from django.contrib.auth.models import User
+>>>>>>> main
 
 
 class Contacts(models.Model):
@@ -112,6 +120,24 @@ class Product(models.Model):
         """Класс формирующий название в единственном и множественном числах"""
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
+<<<<<<< HEAD
+
+
+class Profile(models.Model):
+    """Класс Profile используется для работы с профилями пользователей"""
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    birth_date = models.DateField('Дата рождения', validators=[validate_age], default=timezone.now().date())
+
+    def __str__(self):
+        """Метод возвращает название имя пользователя"""
+        return self.user.username
+
+    class Meta:
+        """Класс формирующий название в единственном и множественном числах"""
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
+||||||| merged common ancestors
+=======
 
 
 class Profile(models.Model):
@@ -129,3 +155,4 @@ class Profile(models.Model):
         """Класс формирующий название в единственном и множественном числах"""
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
+>>>>>>> main
