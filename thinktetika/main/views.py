@@ -3,6 +3,10 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 from .forms import UserForm, ProfileForm
 from .models import Product, Tag
 
@@ -107,3 +111,11 @@ class UpdateProduct(UpdateView):
     fields = '__all__'
     template_name_suffix = '_update_form'
     success_url = '/goods/'
+
+
+def login(request):
+    """Метод login осуществляет перенаправление после авторизации пользователя пользователе"""
+    turn_on_block = True
+    return render(request, 'accounts/profile/', {
+        'turn_on_block': turn_on_block,
+    })

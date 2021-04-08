@@ -13,5 +13,10 @@ class UserForm(forms.ModelForm):
         )
 
 
-ProfileForm = forms.inlineformset_factory(User, Profile, fields=('birth_date', 'avatar',), extra=0, min_num=1,
-                                          can_delete=False)
+ProfileForm = forms.inlineformset_factory(User, Profile, fields=('birth_date', 'avatar'), can_delete=False,
+                                          widgets={
+                                              'birth_date': forms.DateInput(attrs={
+                                                  'type': 'date',
+                                                  'style': 'width:12%; align: center;',
+                                              }),
+                                          })
