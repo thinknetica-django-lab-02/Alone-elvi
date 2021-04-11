@@ -1,0 +1,44 @@
+{% extends 'pages/base.html' %}
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-error">
+                {{ error }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-error">
+            {{ error }}
+        </div>
+    {% endfor %}
+    <form method="POST" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        <a title="Google" class="socialaccount_provider google" href="/accounts/google/login/?process=login">
+            Login via Google.</a>
+        <br>
+        <br>
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.email.label_tag }}</td>
+                <td>{{ form.email }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password1.label_tag }}</td>
+                <td>{{ form.password1 }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password2.label_tag }}</td>
+                <td>{{ form.password2 }}</td>
+            </tr>
+        </table>
+        <button type="submit" class="btn btn-primary">Регистрация</button>
+    </form>
+    <p><a href="{% url 'account_reset_password' %}">Забыли пароль?</a></p>
+{% endblock %}
