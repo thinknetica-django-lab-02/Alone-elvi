@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
@@ -15,7 +16,7 @@ def index(request):
     turn_on_block = True
     data = {'turn_on_block': turn_on_block, 'username': request.user.username}
 
-    return render(request, "pages/index.html", data)
+    return render(request, "/", data)
 
 
 class GoodsListView(ListView):
@@ -52,16 +53,16 @@ class GoodsDetalView(DetailView):
     success_url = '/goods/'
 
 
-class ProfileUpdate(UpdateView):
+class ProfileUpdate(LoginRequiredMixin, UpdateView):
     """Класс ProfileUpdate используется в шаблоне pages/profile.html и доступно по адресу /accounts/profile/"""
     model = User
     form_class = UserForm
     template_name = 'pages/profile.html'
     success_url = '/accounts/profile/'
 
-    def get_object(self, queryset=None):
-        """Метод получения и возврата данных из queryset"""
-        return super(ProfileUpdate, self).get_queryset().get()
+    def get_object(self, request):
+        """Метод возвращает пользователя"""
+        return request.user
 
     def get_context_data(self, **kwargs):
         """Метод получает и возвращает данные из формы"""
@@ -112,10 +113,10 @@ class UpdateProduct(UpdateView):
     template_name_suffix = '_update_form'
     success_url = '/goods/'
 
-
-def login(request):
-    """Метод login осуществляет перенаправление после авторизации пользователя пользователе"""
-    turn_on_block = True
-    return render(request, 'accounts/profile/', {
-        'turn_on_block': turn_on_block,
-    })
+#
+# def login(request):
+#     """Метод login осуществляет перенаправление после авторизации пользователя пользователе"""
+#     turn_on_block = True
+#     return render(request, 'accounts/profile/', {
+#         'turn_on_block': turn_on_block,
+#     })

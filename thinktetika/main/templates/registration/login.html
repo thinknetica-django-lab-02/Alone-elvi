@@ -1,7 +1,9 @@
 {% extends 'pages/base.html' %}
 {% block title %}Login{% endblock %}
-
+{% load socialaccount %}
 {% block content %}
+
+<hr>
 <div class="container">
     <div class="row-fluid">
         <div class="col-6 offset-3 text-center">
@@ -33,9 +35,9 @@
                 </table>
 
                 <button type="submit" class="btn btn-primary">Вход</button>
+                <a class="btn btn-dark" href="{% provider_login_url "google" method="oauth2" %}">Войти через Google </a>
                 <input type="hidden" name="next" value="{{ next }}"/>
             </form>
-
             <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
         </div>
     </div>

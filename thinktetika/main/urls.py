@@ -17,14 +17,12 @@ from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 from django.conf.urls import include
 from django.urls import path
 from .views import index, GoodsListView, GoodsDetalView, CreateProduct, UpdateProduct
 from main.models import Product
 
 urlpatterns = [
-                  path('', index, name='index'),
                   url(r'^goods/$', GoodsListView.as_view(), name='goods'),
                   url(r'^goods/(?P<pk>\d+)/$', GoodsDetalView.as_view(model=Product), name='good-detail'),
                   url(r'^goods/add$', CreateProduct.as_view(), name='good-add'),
