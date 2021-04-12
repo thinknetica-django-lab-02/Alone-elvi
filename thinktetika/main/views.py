@@ -18,7 +18,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 from .forms import UserForm, ProfileForm
-from .models import Product, Tag, Profile
+from .models import Product, Tag, Profile, Subscriber
 
 
 def index(request):
@@ -53,6 +53,18 @@ class GoodsListView(ListView):
         if tag:
             context["tags_url"] = "tag={}&".format(tag)
         return context
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('mailing'):
+            mailing = request.POST.get('mailing')
+            if mailing == 'subscribe':
+                Subscriber.objects.create(user=request.user)
+            elif mailing == 'unsubscribe':
+                subscriber = Subscriber.objects.filter(user_id=request.user.pk).first()
+                if subscriber:
+                    subscriber.delete()
+
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 class GoodsDetalView(DetailView):

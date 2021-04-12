@@ -1,5 +1,5 @@
 from django.contrib import admin
-from main.models import Category, Contacts, Product, Size, Seller, Tag, Profile
+from main.models import Category, Contacts, Product, Size, Seller, Tag, Profile, Subscriber
 
 admin.site.register(Category)
 admin.site.register(Contacts)
@@ -8,3 +8,4 @@ admin.site.register(Size)
 admin.site.register(Seller)
 admin.site.register(Tag)
 admin.site.register(Profile)
+admin.site.register(Subscriber)

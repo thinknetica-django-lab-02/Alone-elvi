@@ -1,11 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.mail import EmailMultiAlternatives
 from django.dispatch import receiver
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
+from django.urls import reverse
+
 from django.utils import timezone
 from sorl.thumbnail import ImageField
+from allauth.account.signals import user_signed_up
 
 from .validators.validators import validate_age
+
+from thinktetika.settings import GMAIL
 
 
 class Contacts(models.Model):
@@ -120,6 +126,9 @@ class Product(models.Model):
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
 
+    def get_absolute_url(self):
+        return f'/goods/{self.pk}/'
+
 
 class Profile(models.Model):
     """Класс Profile используется для работы с профилями пользователей"""
@@ -128,10 +137,48 @@ class Profile(models.Model):
     avatar = models.ImageField('Аватар', upload_to='avatars/', null=True, blank=True)
 
     def __str__(self):
-        """Метод возвращает название имя пользователя"""
+        """Метод возвращает имя пользователя"""
         return self.user.username
 
     class Meta:
         """Класс формирующий название в единственном и множественном числах"""
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
+
+
+class Subscriber(models.Model):
+    """Класс Subscriber используется для отправки рассылки пользователям подписанным на неё"""
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="subscriber")
+
+    class Meta:
+        """Класс формирующий название в единственном и множественном числах"""
+        verbose_name = 'Подписчик'
+        verbose_name_plural = 'Подписчики'
+
+    def __str__(self):
+        """Метод возвращает имя пользователя"""
+        return self.user.username
+
+
+def sending_html_mail(subject, text_content, html_content, from_email, to_list):
+    message = EmailMultiAlternatives(subject, text_content, from_email, to_list)
+    message.attach_alternative(html_content, "text/html")
+    message.send()
+
+
+@receiver(post_save, sender=Product)
+def get_subscriber(sender, instance, created, **kwargs):
+    if created:
+        emails = [e.user.email for e in Subscriber.objects.all()]
+        subject = f"Новинка: {instance.title}"
+        text_content = f" Вы подписаны на рассылку. У нас для Вас есть {instance.title}. " \
+                       f"Подробности по ссылке {instance.get_absolute_url()}"
+        html_content = f'''
+            <ul>
+                <li>Название: {instance.title}</li>
+                <li>Цена: {instance.price}</li>
+            </ul>
+            Подробности можно получить по <a href="{instance.get_absolute_url()}">ссылке</a>.
+        '''
+        from_email = GMAIL
+        sending_html_mail(subject, text_content, html_content, from_email, emails)
