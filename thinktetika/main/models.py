@@ -1,9 +1,14 @@
 from django.db import models
+from django.utils.timezone import now
 from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.dispatch import receiver
 from django.db.models.signals import post_save, pre_save
 from django.urls import reverse
+
+
+import atexit
+from apscheduler.schedulers.background import BackgroundScheduler
 
 from django.utils import timezone
 from sorl.thumbnail import ImageField
@@ -12,6 +17,9 @@ from allauth.account.signals import user_signed_up
 from .validators.validators import validate_age
 
 from thinktetika.settings import GMAIL
+from .email import new_product_email_template
+from .email import new_products_by_scheduler_email_template
+
 
 
 class Contacts(models.Model):
@@ -116,6 +124,7 @@ class Product(models.Model):
     quantity = models.DecimalField('Количество', max_digits=10, decimal_places=2)
     price = models.DecimalField('Стоимость', max_digits=10, decimal_places=2)
     seller = models.ForeignKey('Seller', on_delete=models.CASCADE, null=False)
+    pub_date = models.DateTimeField('Дата заполнения', default=timezone.now, blank=True)
 
     def __str__(self):
         """Метод возвращает название запрашиваемого товара."""
@@ -170,15 +179,43 @@ def sending_html_mail(subject, text_content, html_content, from_email, to_list):
 def get_subscriber(sender, instance, created, **kwargs):
     if created:
         emails = [e.user.email for e in Subscriber.objects.all()]
-        subject = f"Новинка: {instance.title}"
-        text_content = f" Вы подписаны на рассылку. У нас для Вас есть {instance.title}. " \
-                       f"Подробности по ссылке {instance.get_absolute_url()}"
-        html_content = f'''
+        subject = new_product_email_template.subject + {instance.title}
+        text_content = new_product_email_template.text_content + {
+            instance.title} + new_product_email_template.text_content_url + {instance.get_absolute_url()}
+    html_content = f'''
             <ul>
                 <li>Название: {instance.title}</li>
                 <li>Цена: {instance.price}</li>
             </ul>
             Подробности можно получить по <a href="{instance.get_absolute_url()}">ссылке</a>.
         '''
-        from_email = GMAIL
-        sending_html_mail(subject, text_content, html_content, from_email, emails)
+    from_email = new_product_email_template.from_email
+    sending_html_mail(subject, text_content, html_content, from_email, emails)
+
+
+def sending_new_products_by_scheduler():
+    year, week, _ = now().isocalendar()
+
+    emails = [e.user.email for e in Subscriber.objects.all()]
+    products = Product.objects.filter(pub_date__iso_year=year, pub_date__week=week)
+    subject = new_products_by_scheduler_email_template.subject
+    text_content = new_products_by_scheduler_email_template.text_content
+    html_content = new_products_by_scheduler_email_template.html_content
+    for product in products:
+        text_content += f"{product.title}, "
+        html_content += f"""<p>{product.title}</p><br>"""
+    from_email = new_products_by_scheduler_email_template.from_email
+    sending_html_mail(subject, text_content, html_content, from_email, emails)
+
+
+schedule_task = BackgroundScheduler()
+
+schedule_task.add_job(
+    sending_new_products_by_scheduler, 'cron',
+    day_of_week='sun', hour=14, minute=00,
+    timezone='Europe/Moscow', start_date='2021-04-12'
+)
+
+schedule_task.start()
+
+atexit.register(lambda: schedule_task.shutdown())
