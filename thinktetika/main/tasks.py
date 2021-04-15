@@ -7,15 +7,9 @@ from .models import Product, Subscriber, sending_html_mail
 from main.email import new_products_by_scheduler_email_template
 
 
-
-
-@shared_task
-def adding_task(x, y):
-    return x + y
-
-
 @celery_app.task
 def sending_new_products_by_scheduler():
+    """Метод ответственный за отправку сообщений пользователям о новинках недели"""
     year, week, _ = now().isocalendar()
 
     emails = [e.user.email for e in Subscriber.objects.all()]

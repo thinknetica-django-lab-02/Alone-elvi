@@ -17,16 +17,17 @@ from .tasks import sending_new_products_by_scheduler
 
 import logging
 
-logger = logging.getLogger(__name__)
-
 from .forms import UserForm, ProfileForm
 from .models import Product, Tag, Profile, Subscriber
+
+logger = logging.getLogger(__name__)
 
 
 class IndexView(TemplateView):
     template_name = 'pages/index.html'
 
     def get_context_data(self, **kwargs):
+        """Метод ответсвенный за вывод главной страницы и отправку сообщений о новинках недели по расписанию."""
         context = super(IndexView, self).get_context_data(**kwargs)
         sending_new_products_by_scheduler()
         return context

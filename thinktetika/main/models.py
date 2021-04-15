@@ -4,20 +4,12 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.dispatch import receiver
 from django.db.models.signals import post_save, pre_save
-from django.urls import reverse
-
-import atexit
-from apscheduler.schedulers.background import BackgroundScheduler
 
 from django.utils import timezone
-from sorl.thumbnail import ImageField
-from allauth.account.signals import user_signed_up
 
 from .validators.validators import validate_age
 
-from thinktetika.settings import GMAIL
 from .email import new_product_email_template
-from .email import new_products_by_scheduler_email_template
 
 
 class Contacts(models.Model):
