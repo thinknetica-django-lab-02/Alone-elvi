@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView, ListView, UpdateView, CreateView
+from django.views.generic import DetailView, ListView, UpdateView, CreateView, TemplateView
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -13,12 +13,23 @@ from thinktetika.settings import DEFAULT_GROUP_NAME
 
 from .email import email_template
 
+from .tasks import sending_new_products_by_scheduler
+
 import logging
 
 logger = logging.getLogger(__name__)
 
 from .forms import UserForm, ProfileForm
 from .models import Product, Tag, Profile, Subscriber
+
+
+class IndexView(TemplateView):
+    template_name = 'pages/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        sending_new_products_by_scheduler()
+        return context
 
 
 def index(request):

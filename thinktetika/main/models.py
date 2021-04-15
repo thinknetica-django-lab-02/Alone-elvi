@@ -6,7 +6,6 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save, pre_save
 from django.urls import reverse
 
-
 import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -19,7 +18,6 @@ from .validators.validators import validate_age
 from thinktetika.settings import GMAIL
 from .email import new_product_email_template
 from .email import new_products_by_scheduler_email_template
-
 
 
 class Contacts(models.Model):
@@ -191,31 +189,3 @@ def get_subscriber(sender, instance, created, **kwargs):
         '''
     from_email = new_product_email_template.from_email
     sending_html_mail(subject, text_content, html_content, from_email, emails)
-
-
-def sending_new_products_by_scheduler():
-    year, week, _ = now().isocalendar()
-
-    emails = [e.user.email for e in Subscriber.objects.all()]
-    products = Product.objects.filter(pub_date__iso_year=year, pub_date__week=week)
-    subject = new_products_by_scheduler_email_template.subject
-    text_content = new_products_by_scheduler_email_template.text_content
-    html_content = new_products_by_scheduler_email_template.html_content
-    for product in products:
-        text_content += f"{product.title}, "
-        html_content += f"""<p>{product.title}</p><br>"""
-    from_email = new_products_by_scheduler_email_template.from_email
-    sending_html_mail(subject, text_content, html_content, from_email, emails)
-
-
-schedule_task = BackgroundScheduler()
-
-schedule_task.add_job(
-    sending_new_products_by_scheduler, 'cron',
-    day_of_week='sun', hour=14, minute=00,
-    timezone='Europe/Moscow', start_date='2021-04-12'
-)
-
-schedule_task.start()
-
-atexit.register(lambda: schedule_task.shutdown())
