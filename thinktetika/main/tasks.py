@@ -7,7 +7,7 @@ from .models import Product, Subscriber, sending_html_mail
 from main.email import new_products_by_scheduler_email_template
 
 
-@celery_app.task
+@celery_app.task(name="sending_new_products_by_scheduler", routing_key="sending_new_products_by_scheduler")
 def sending_new_products_by_scheduler():
     """Метод ответственный за отправку сообщений пользователям о новинках недели"""
     year, week, _ = now().isocalendar()

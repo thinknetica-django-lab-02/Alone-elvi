@@ -33,13 +33,6 @@ class IndexView(TemplateView):
         return context
 
 
-def index(request):
-    turn_on_block = True
-    data = {'turn_on_block': turn_on_block, 'username': request.user.username}
-
-    return render(request, "/", data)
-
-
 class GoodsListView(ListView):
     """класс GoodsListView выводит список товаров из таблицы Product в шаблон pages/goods.html
         с разбивкой по 10 товаров на страницу
