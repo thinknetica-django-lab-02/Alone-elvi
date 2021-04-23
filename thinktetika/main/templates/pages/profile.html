@@ -2,23 +2,26 @@
 {% block content %}
 
 {% include 'snippets/profile_messages.html' %}
-    {% if user.is_authenticated %}
-    <div class="row">
-        <div class="col-6 offset-3 text-center">
+{% if user.is_authenticated %}
+<div class="row">
+    <div class="col-6 offset-3 text-center">
+        <br>
+        <strong>Пользователь: </strong> {{ user }}
+        <hr>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ profile_form.management_form }}
+            {% for inline_form in profile_form %}
+            {{ inline_form.as_p }}
+            {% endfor %}
             <br>
-            <strong>Пользователь: </strong> {{ user }}
-            <hr>
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                {{ profile_form.management_form }}
-                {% for inline_form in profile_form %}
-                    {{ inline_form.as_p }}
-                {% endfor %}
-                <br>
-                <button type="submit" class="btn btn-primary">Сохранить</button>
-            </form>
-        </div>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+        {% if not user.profile.phone_confirmed %}
+        <a href="/accounts/profile/phone_confirmation"> Подтвердить номер телефона</a>
+        {% endif %}
     </div>
-    {% endif %}
+</div>
+{% endif %}
 {% endblock %}

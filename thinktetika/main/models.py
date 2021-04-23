@@ -7,6 +7,8 @@ from django.db.models.signals import post_save, pre_save
 
 from django.utils import timezone
 
+from phone_field import PhoneField
+
 from .validators.validators import validate_age
 
 from .email import new_product_email_template
@@ -134,6 +136,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birth_date = models.DateField('Дата рождения', validators=[validate_age], default=timezone.now().date())
     avatar = models.ImageField('Аватар', upload_to='avatars/', null=True, blank=True)
+    phone_number = PhoneField('Номер телефона', blank=True)
+    phone_confirmed = models.PositiveIntegerField('Подтверждено')
 
     def __str__(self):
         """Метод возвращает имя пользователя"""
@@ -143,6 +147,15 @@ class Profile(models.Model):
         """Класс формирующий название в единственном и множественном числах"""
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
+
+
+class SMSConfirm(models.Model):
+    """
+    Класс подтверждающий SMS код
+    """
+    code = models.PositiveIntegerField('Код подтверждения')
+    status = models.CharField('Статус ответа сервера', max_length=14)
+    user = models.ManyToManyField(User)
 
 
 class Subscriber(models.Model):

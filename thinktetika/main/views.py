@@ -13,7 +13,7 @@ from thinktetika.settings import DEFAULT_GROUP_NAME
 
 from .email import email_template
 
-from .tasks import sending_new_products_by_scheduler
+from .tasks import sending_new_products_by_scheduler, send_phone_code
 
 import logging
 
@@ -156,3 +156,21 @@ class UpdateProduct(UpdateView):
     fields = '__all__'
     template_name_suffix = '_update_form'
     success_url = '/goods/'
+
+
+def phone_number_confirmation(request):
+    """
+    Метод позволяющий реализовать подтверждение номера телефона
+    """
+    user = request.user
+    phone_number = str(user.profile.phone_number)
+    confirmation = user.profile.phone_confirmed
+    if not confirmation and phone_number:
+        send_phone_code.delay(phone_number, user.id)
+        confirm_message = "Вам отправлен 4-х значный номер для подтверждения"
+        request.session['confirm_message'] = confirm_message
+        return redirect('profile')
+    else:
+        confirm_message = 'Вы подтвердили свой номер телефона'
+        request.session['confirm_message'] = confirm_message
+        return redirect('profile')
