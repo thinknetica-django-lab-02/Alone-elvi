@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.cache import cache
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.core.mail import send_mail
 from django.conf import settings
@@ -79,12 +80,22 @@ class GoodsListView(ListView):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
-@method_decorator(cache_page(CACHE_TTL), name='dispatch')
 class GoodsDetalView(DetailView):
     """класс GoodsDetalView выводит данные по единице товара из таблицы Product в шаблон good-detail.html"""
     model = Product
     template_name = 'pages/good-detail.html'
     success_url = '/goods/'
+
+    def get_context_data(self, **kwargs):
+        """ Метод передаёт в шаблон кешированное количество просмотров товара"""
+        context = super().get_context_data(**kwargs)
+        good_object = self.get_object()
+        object_count_key = f"object_{good_object.id}_count"
+        object_count = cache.get(object_count_key, 0)
+        object_count += 1
+        cache.set(object_count_key, object_count, timeout=60)
+        context['object_count'] = object_count
+        return context
 
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
