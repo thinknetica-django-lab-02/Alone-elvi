@@ -124,8 +124,14 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
-    {'NAME': 'django.middleware.cache.UpdateCacheMiddleware', },
-    {'NAME': 'django.middleware.cache.FetchFromCacheMiddleware', },
+
+    {
+        'NAME': 'django.middleware.cache.UpdateCacheMiddleware',
+    },
+
+    {
+        'NAME': 'django.middleware.cache.FetchFromCacheMiddleware',
+    },
 
 ]
 
@@ -206,6 +212,7 @@ CELERY_BEAT_SCHEDULE = {
     },
 }
 
+
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
@@ -215,6 +222,8 @@ CACHES = {
         }
     }
 }
+
+CACHE_TTL = 60 * 5
 
 TWILIO_ACCOUNT_SID = config('TWILIO_ACCOUNT_SID')
 TWILIO_AUTH_TOKEN = config('TWILIO_AUTH_TOKEN')

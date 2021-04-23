@@ -1,6 +1,10 @@
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.core.mail import send_mail
+from django.conf import settings
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -22,6 +26,8 @@ from .models import Product, Tag, Profile, Subscriber
 
 logger = logging.getLogger(__name__)
 
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
+
 
 class IndexView(TemplateView):
     template_name = 'pages/index.html'
@@ -33,6 +39,7 @@ class IndexView(TemplateView):
         return context
 
 
+@method_decorator(cache_page(CACHE_TTL), name='dispatch')
 class GoodsListView(ListView):
     """класс GoodsListView выводит список товаров из таблицы Product в шаблон pages/goods.html
         с разбивкой по 10 товаров на страницу
@@ -72,6 +79,7 @@ class GoodsListView(ListView):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
+@method_decorator(cache_page(CACHE_TTL), name='dispatch')
 class GoodsDetalView(DetailView):
     """класс GoodsDetalView выводит данные по единице товара из таблицы Product в шаблон good-detail.html"""
     model = Product
