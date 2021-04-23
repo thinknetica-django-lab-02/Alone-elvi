@@ -124,12 +124,8 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
-    {
-        'NAME': 'django.middleware.cache.UpdateCacheMiddleware',
-    },
-    {
-        'NAME': 'django.middleware.cache.FetchFromCacheMiddleware',
-    },
+    {'NAME': 'django.middleware.cache.UpdateCacheMiddleware', },
+    {'NAME': 'django.middleware.cache.FetchFromCacheMiddleware', },
 
 ]
 
