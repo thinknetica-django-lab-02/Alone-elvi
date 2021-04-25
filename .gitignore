@@ -10,7 +10,6 @@ __pycache__/
 local_settings.py
 db.sqlite3
 media
-/thinktetika/main/static/
 ### Linux ###
 *~
 
@@ -218,4 +217,8 @@ ENV/
 /thinktetika/thinktetika/migrations/
 /thinktetika/main/templatetags/__init__.py
 /thinktetika/main/media/
+!thinktetika/thinktetika/settings.py
 
+# redis
+*.rdb
+dump.rdb
