@@ -12,6 +12,7 @@
             {% get_flatpages as flatpages %}
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 {% for page in flatpages %}
+<<<<<<< HEAD:thinktetika/main/templates/snippets/top-menu.html
                 {% if page.title == 'Профиль'%}
                 {% if user.is_authenticated %}
                 <li class="nabvar-item">
@@ -21,9 +22,23 @@
                 {% else %}
                 <li class="nav-item"><a class="nav-link" href="{{ page.url }}">{{ page.title }}</a></li>
                 {% endif %}
+||||||| 4710e6f:thinktetika/main/templates/snippets/top-menu.html
+                    {% if page.title == 'Профиль'%}
+                        {% if user.is_authenticated %}
+                            <li class="nabvar-item">
+                                <a class="nav-link" href="{{ page.url }}">{{ page.title }}</a>
+                            </li>
+                        {% endif %}
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{{ page.url }}">{{ page.title }}</a></li>
+                    {% endif %}
+=======
+                    <li class="nav-item"><a class="nav-link" href="{{ page.url }}">{{ page.title }}</a></li>
+>>>>>>> main:main/main/templates/snippets/top-menu.html
                 {% endfor %}
             </ul>
             <form class="d-flex">
+<<<<<<< HEAD:thinktetika/main/templates/snippets/top-menu.html
                 {% if user.is_authenticated %}
                 {% thumbnail user.profile.avatar "30x30" crop="center" as im %}
                 <a href="{% url 'profile-update' %}">
@@ -36,6 +51,12 @@
                                     <atrong><li class="nav-item">
                         <a class="nav-link" href="{% url 'account_signup' %}">Регистрация</a></li></atrong>
                 {% endif%}
+||||||| 4710e6f:thinktetika/main/templates/snippets/top-menu.html
+                {% if user.is_authenticated %}
+                    <strong><a class="nav-link" href="{% url 'profile-update' %}">{{ user.get_username }}</a></strong>
+                {% endif%}
+=======
+>>>>>>> main:main/main/templates/snippets/top-menu.html
                 <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Поиск</button>
             </form>
