@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.mail import send_mail
+
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
 from django.db.models.signals import post_save
@@ -9,12 +11,14 @@ from django.dispatch import receiver
 
 from thinktetika.settings import DEFAULT_GROUP_NAME
 
+from .email import email_template
+
 import logging
 
 logger = logging.getLogger(__name__)
 
 from .forms import UserForm, ProfileForm
-from .models import Product, Tag, Profile
+from .models import Product, Tag, Profile, Subscriber
 
 
 def index(request):
@@ -49,6 +53,18 @@ class GoodsListView(ListView):
         if tag:
             context["tags_url"] = "tag={}&".format(tag)
         return context
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('mailing'):
+            mailing = request.POST.get('mailing')
+            if mailing == 'subscribe':
+                Subscriber.objects.create(user=request.user)
+            elif mailing == 'unsubscribe':
+                subscriber = Subscriber.objects.filter(user_id=request.user.pk).first()
+                if subscriber:
+                    subscriber.delete()
+
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 class GoodsDetalView(DetailView):
@@ -94,9 +110,19 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
             if not Group.objects.filter(name=DEFAULT_GROUP_NAME):
-                Group.objects.create(name=DEFAULT_GROUP_NAME)
+                Group.objects.get_or_create(name=DEFAULT_GROUP_NAME)
             instance.groups.add(Group.objects.get(name=DEFAULT_GROUP_NAME))
             Profile.objects.create(user=User.objects.get(username=instance))
+
+            if instance.email:
+                send_mail(
+                    subject=email_template.subject,
+                    message=email_template.message,
+                    from_email=email_template.from_email,
+                    recipient_list=[instance.email],
+                    fail_silently=False,
+                    html_message=email_template.html_message
+                )
 
     def post(self, request, *args, **kwargs):
         """Метод возвращает шаблон с переданным словарём или ошибку заполнения формы"""
@@ -104,7 +130,7 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
         form = self.get_form()
         profile_form = ProfileForm(self.request.POST, self.request.FILES, instance=self.object)
         if form.is_valid():
-            return render(request, self.template_name, {'form': form, 'profile_form': profile_form})
+            return self.form_valid_formset(form, profile_form)
         else:
             return self.form_invalid(form)
 
@@ -119,7 +145,7 @@ class CreateProduct(CreateView):
 
 
 class UpdateProduct(UpdateView):
-    """Класс UpdateProduct, предназначен для редактирования текщего товара"""
+    """Класс UpdateProduct, предназначен для редактирования текущего товара"""
     model = Product
     template_name = 'pages/good-edit.html'
     fields = '__all__'

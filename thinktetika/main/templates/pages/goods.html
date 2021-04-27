@@ -1,8 +1,29 @@
 {% extends 'pages/base.html' %}
 {% block content %}
+<div class="row">
+    <div class="col-6 offset-3 text-center">
         <ul>
-        {% for good in object_list %}
-            <li><a href="{{ good.get_absolute_url }}\goods\{{good.pk}}">{{ good.title }}</a> ({{good.category}})</li>
-        {% endfor %}
-    </ul>
+            {% for good in object_list %}
+
+            <li><a href="{{ good.get_absolute_url }}">{{ good.title }}</a> ({{good.category}})</li>
+            {% endfor %}
+        </ul>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% if subscriber %}
+            <h3>Подписаться на рассылку.</h3>
+            <input type="hidden" name="mailing" value="unsubscribe">
+            <button type="submit" class="btn btn-warning">Отписаться</button>
+            {% else %}
+            <input type="hidden" name="mailing" value="subscribe">
+            <button type="submit" class="btn btn-warning">Подписаться</button>
+            {% endif %}
+    </div>
+    <div class="col-3">
+        {% include "snippets/tags_links.html" with tags=tags%}
+    </div>
+    <div class="col-12">
+        {% include "snippets/pagination.html" with page_obj=page_obj%}
+    </div>
+</div>
 {% endblock %}

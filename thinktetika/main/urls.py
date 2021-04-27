@@ -19,12 +19,14 @@ from django.conf.urls.static import static
 
 from django.conf.urls import include
 from django.urls import path
+
+from .validators.validators import group_check
 from .views import index, GoodsListView, GoodsDetalView, CreateProduct, UpdateProduct
 from main.models import Product
 
 urlpatterns = [
-                  url(r'^goods/$', GoodsListView.as_view(), name='goods'),
-                  url(r'^goods/(?P<pk>\d+)/$', GoodsDetalView.as_view(model=Product), name='good-detail'),
-                  url(r'^goods/add$', CreateProduct.as_view(), name='good-add'),
-                  path('goods/<int:pk>/edit', UpdateProduct.as_view(), name='good-edit'),
+                  path('goods/', GoodsListView.as_view(model=Product), name='goods'),
+                  path('goods/<int:pk>/', GoodsDetalView.as_view(model=Product), name='good-detail'),
+                  path('goods/add', group_check(CreateProduct.as_view()), name='good-add'),
+                  path('goods/<int:pk>/edit', group_check(UpdateProduct.as_view()), name='good-edit'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
