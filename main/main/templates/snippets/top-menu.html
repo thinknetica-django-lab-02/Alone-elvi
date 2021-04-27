@@ -45,6 +45,8 @@
                     <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></a>
                 {% endthumbnail %}
                 <strong><a class="nav-link" href="{% url 'profile-update' %}">{{ user.get_username }}</a></strong>
+                {% else %}
+                    <strong><a class="nav-link" href="{% url 'login' %}">Авторизация</a></strong>
                 {% endif%}
 ||||||| 4710e6f:thinktetika/main/templates/snippets/top-menu.html
                 {% if user.is_authenticated %}

@@ -1,0 +1,46 @@
+{% extends 'pages/base.html' %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row-fluid">
+        <div class="col-6 offset-3 text-center">
+            {% if form.errors %}
+            <p>Проверьте правильность заполнения логина или пароля.</p>
+            {% endif %}
+
+            {% if next %}
+            {% if user.is_authenticated %}
+            <p>Не получается, проверьте ещё раз логин и поароль</p>
+            {% else %}
+            <p>Залогиньтесь</p>
+            {% endif %}
+            {% endif %}
+
+            <form method="post" action="{% url 'login' %}" class="text-center">
+                {% csrf_token %}
+                <table>
+
+                    <tr>
+                        <td>{{ form.username.label_tag }}</td>
+                        <td>{{ form.username }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>{{ form.password.label_tag }}</td>
+                        <td>{{ form.password }}</td>
+                    </tr>
+                </table>
+
+                <button type="submit" class="btn btn-primary">Вход</button>
+                <input type="hidden" name="next" value="{{ next }}"/>
+            </form>
+
+            <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+        </div>
+    </div>
+    <div class="col-3"></div>
+</div>
+</div>
+
+{% endblock %}

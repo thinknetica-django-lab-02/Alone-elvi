@@ -1,14 +1,11 @@
 from django.db import models
-<<<<<<< HEAD
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 from django.utils import timezone
 from sorl.thumbnail import ImageField
 
 from .validators.validators import validate_age
-||||||| merged common ancestors
-=======
-from django.contrib.auth.models import User
->>>>>>> main
 
 
 class Contacts(models.Model):
@@ -105,12 +102,14 @@ class Product(models.Model):
     """
     title = models.CharField('Название', max_length=150, default='')
     sku = models.CharField('Артикул', max_length=20, default='')
-    image = models.ImageField('Изображение', upload_to='products/', null=True, blank=True)
+    image = models.ImageField('Изображение', upload_to='products/', null=True,
+                              blank=True)
     size = models.ForeignKey('Size', on_delete=models.CASCADE)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag')
     weight = models.DecimalField('Вес', max_digits=10, decimal_places=2)
-    quantity = models.DecimalField('Количество', max_digits=10, decimal_places=2)
+    quantity = models.DecimalField('Количество', max_digits=10,
+                                   decimal_places=2)
     price = models.DecimalField('Стоимость', max_digits=10, decimal_places=2)
     seller = models.ForeignKey('Seller', on_delete=models.CASCADE, null=False)
 
@@ -122,14 +121,15 @@ class Product(models.Model):
         """Класс формирующий название в единственном и множественном числах"""
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
-<<<<<<< HEAD
 
 
 class Profile(models.Model):
     """Класс Profile используется для работы с профилями пользователей"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    birth_date = models.DateField('Дата рождения', validators=[validate_age], default=timezone.now().date())
-    avatar = models.ImageField('Аватар', upload_to='avatars/', null=True, blank=True)
+    birth_date = models.DateField('Дата рождения', validators=[validate_age],
+                                  default=timezone.now().date())
+    avatar = models.ImageField('Аватар', upload_to='avatars/', null=True,
+                               blank=True)
 
     def __str__(self):
         """Метод возвращает название имя пользователя"""
@@ -139,23 +139,3 @@ class Profile(models.Model):
         """Класс формирующий название в единственном и множественном числах"""
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
-||||||| merged common ancestors
-=======
-
-
-class Profile(models.Model):
-    """Класс Profile используется для работы с профилями пользователей"""
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField('Имя', max_length=255)
-    last_name = models.CharField('Фамилия', max_length=255)
-    email = models.EmailField()
-
-    def __str__(self):
-        """Метод возвращает название Фамилию, Имя и e-mail пользователя."""
-        return "Фамилия {} Имя {} - e-mail {}".format(self.last_name, self.first_name, self.email)
-
-    class Meta:
-        """Класс формирующий название в единственном и множественном числах"""
-        verbose_name = 'Пользователь'
-        verbose_name_plural = 'Пользователи'
->>>>>>> main

@@ -3,9 +3,12 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 from .forms import UserForm, ProfileForm
 from .models import Product, Tag
-
 
 
 def index(request):
@@ -16,14 +19,9 @@ def index(request):
 
 
 class GoodsListView(ListView):
-<<<<<<< HEAD
-    """Класс GoodsListView генерирует список товаров в шаблон pages/goods.html"""
-||||||| 34ba96f
-=======
     """класс GoodsListView выводит список товаров из таблицы Product в шаблон pages/goods.html
         с разбивкой по 10 товаров на страницу
     """
->>>>>>> main
     model = Product
     template_name = 'pages/goods.html'
     paginate_by = 10
@@ -47,25 +45,11 @@ class GoodsListView(ListView):
         return context
 
 
-
 class GoodsDetalView(DetailView):
-<<<<<<< HEAD
-    """Класс GoodsListView генерирует описание единицы товара в шаблон pages/good-detail.html"""
-||||||| 34ba96f
-=======
     """класс GoodsDetalView выводит данные по единице товара из таблицы Product в шаблон good-detail.html"""
->>>>>>> main
     model = Product
     template_name = 'pages/good-detail.html'
-<<<<<<< HEAD
     success_url = '/goods/'
-||||||| 4710e6f
-=======
-<<<<<<< HEAD
-||||||| 34ba96f
-
-=======
->>>>>>> main
 
 
 class ProfileUpdate(UpdateView):
@@ -109,7 +93,6 @@ class ProfileUpdate(UpdateView):
             return render(request, self.template_name, {'form': form, 'profile_form': profile_form})
         else:
             return self.form_invalid(form)
-<<<<<<< HEAD
 
 
 class CreateProduct(CreateView):
@@ -128,7 +111,11 @@ class UpdateProduct(UpdateView):
     fields = '__all__'
     template_name_suffix = '_update_form'
     success_url = '/goods/'
-||||||| 4710e6f
-=======
->>>>>>> main
->>>>>>> main
+
+
+def login(request):
+    """Метод login осуществляет перенаправление после авторизации пользователя пользователе"""
+    turn_on_block = True
+    return render(request, 'accounts/profile/', {
+        'turn_on_block': turn_on_block,
+    })
