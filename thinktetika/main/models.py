@@ -102,12 +102,14 @@ class Product(models.Model):
     """
     title = models.CharField('Название', max_length=150, default='')
     sku = models.CharField('Артикул', max_length=20, default='')
-    image = models.ImageField('Изображение', upload_to='products/', null=True, blank=True)
+    image = models.ImageField('Изображение', upload_to='products/', null=True,
+                              blank=True)
     size = models.ForeignKey('Size', on_delete=models.CASCADE)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag')
     weight = models.DecimalField('Вес', max_digits=10, decimal_places=2)
-    quantity = models.DecimalField('Количество', max_digits=10, decimal_places=2)
+    quantity = models.DecimalField('Количество', max_digits=10,
+                                   decimal_places=2)
     price = models.DecimalField('Стоимость', max_digits=10, decimal_places=2)
     seller = models.ForeignKey('Seller', on_delete=models.CASCADE, null=False)
 
@@ -124,8 +126,10 @@ class Product(models.Model):
 class Profile(models.Model):
     """Класс Profile используется для работы с профилями пользователей"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    birth_date = models.DateField('Дата рождения', validators=[validate_age], default=timezone.now().date())
-    avatar = models.ImageField('Аватар', upload_to='avatars/', null=True, blank=True)
+    birth_date = models.DateField('Дата рождения', validators=[validate_age],
+                                  default=timezone.now().date())
+    avatar = models.ImageField('Аватар', upload_to='avatars/', null=True,
+                               blank=True)
 
     def __str__(self):
         """Метод возвращает название имя пользователя"""
