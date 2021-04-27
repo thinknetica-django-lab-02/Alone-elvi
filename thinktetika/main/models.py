@@ -1,17 +1,17 @@
 from django.db import models
+from django.utils.timezone import now
 from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.dispatch import receiver
 from django.db.models.signals import post_save, pre_save
-from django.urls import reverse
 
 from django.utils import timezone
-from sorl.thumbnail import ImageField
-from allauth.account.signals import user_signed_up
+
+from phone_field import PhoneField
 
 from .validators.validators import validate_age
 
-from thinktetika.settings import GMAIL
+from .email import new_product_email_template
 
 
 class Contacts(models.Model):
@@ -116,6 +116,7 @@ class Product(models.Model):
     quantity = models.DecimalField('Количество', max_digits=10, decimal_places=2)
     price = models.DecimalField('Стоимость', max_digits=10, decimal_places=2)
     seller = models.ForeignKey('Seller', on_delete=models.CASCADE, null=False)
+    pub_date = models.DateTimeField('Дата заполнения', default=timezone.now, blank=True)
 
     def __str__(self):
         """Метод возвращает название запрашиваемого товара."""
@@ -135,6 +136,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birth_date = models.DateField('Дата рождения', validators=[validate_age], default=timezone.now().date())
     avatar = models.ImageField('Аватар', upload_to='avatars/', null=True, blank=True)
+    phone_number = PhoneField('Номер телефона', blank=True)
+    phone_confirmed = models.PositiveIntegerField('Подтверждено')
 
     def __str__(self):
         """Метод возвращает имя пользователя"""
@@ -144,6 +147,15 @@ class Profile(models.Model):
         """Класс формирующий название в единственном и множественном числах"""
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
+
+
+class SMSConfirm(models.Model):
+    """
+    Класс подтверждающий SMS код
+    """
+    code = models.PositiveIntegerField('Код подтверждения')
+    status = models.CharField('Статус ответа сервера', max_length=14)
+    user = models.ManyToManyField(User)
 
 
 class Subscriber(models.Model):
@@ -170,15 +182,15 @@ def sending_html_mail(subject, text_content, html_content, from_email, to_list):
 def get_subscriber(sender, instance, created, **kwargs):
     if created:
         emails = [e.user.email for e in Subscriber.objects.all()]
-        subject = f"Новинка: {instance.title}"
-        text_content = f" Вы подписаны на рассылку. У нас для Вас есть {instance.title}. " \
-                       f"Подробности по ссылке {instance.get_absolute_url()}"
-        html_content = f'''
+        subject = new_product_email_template.subject + {instance.title}
+        text_content = new_product_email_template.text_content + {
+            instance.title} + new_product_email_template.text_content_url + {instance.get_absolute_url()}
+    html_content = f'''
             <ul>
                 <li>Название: {instance.title}</li>
                 <li>Цена: {instance.price}</li>
             </ul>
             Подробности можно получить по <a href="{instance.get_absolute_url()}">ссылке</a>.
         '''
-        from_email = GMAIL
-        sending_html_mail(subject, text_content, html_content, from_email, emails)
+    from_email = new_product_email_template.from_email
+    sending_html_mail(subject, text_content, html_content, from_email, emails)

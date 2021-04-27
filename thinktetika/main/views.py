@@ -1,10 +1,15 @@
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.cache import cache
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.core.mail import send_mail
+from django.conf import settings
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView, ListView, UpdateView, CreateView
+from django.views.generic import DetailView, ListView, UpdateView, CreateView, TemplateView
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -13,21 +18,29 @@ from thinktetika.settings import DEFAULT_GROUP_NAME
 
 from .email import email_template
 
-import logging
+from .tasks import sending_new_products_by_scheduler, send_phone_code
 
-logger = logging.getLogger(__name__)
+import logging
 
 from .forms import UserForm, ProfileForm
 from .models import Product, Tag, Profile, Subscriber
 
+logger = logging.getLogger(__name__)
 
-def index(request):
-    turn_on_block = True
-    data = {'turn_on_block': turn_on_block, 'username': request.user.username}
-
-    return render(request, "/", data)
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 
+class IndexView(TemplateView):
+    template_name = 'pages/index.html'
+
+    def get_context_data(self, **kwargs):
+        """Метод ответсвенный за вывод главной страницы и отправку сообщений о новинках недели по расписанию."""
+        context = super(IndexView, self).get_context_data(**kwargs)
+        sending_new_products_by_scheduler()
+        return context
+
+
+@method_decorator(cache_page(CACHE_TTL), name='dispatch')
 class GoodsListView(ListView):
     """класс GoodsListView выводит список товаров из таблицы Product в шаблон pages/goods.html
         с разбивкой по 10 товаров на страницу
@@ -72,6 +85,17 @@ class GoodsDetalView(DetailView):
     model = Product
     template_name = 'pages/good-detail.html'
     success_url = '/goods/'
+
+    def get_context_data(self, **kwargs):
+        """ Метод передаёт в шаблон кешированное количество просмотров товара"""
+        context = super().get_context_data(**kwargs)
+        good_object = self.get_object()
+        object_count_key = f"object_{good_object.id}_count"
+        object_count = cache.get(object_count_key, 0)
+        object_count += 1
+        cache.set(object_count_key, object_count, timeout=60)
+        context['object_count'] = object_count
+        return context
 
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
@@ -151,3 +175,21 @@ class UpdateProduct(UpdateView):
     fields = '__all__'
     template_name_suffix = '_update_form'
     success_url = '/goods/'
+
+
+def phone_number_confirmation(request):
+    """
+    Метод позволяющий реализовать подтверждение номера телефона
+    """
+    user = request.user
+    phone_number = str(user.profile.phone_number)
+    confirmation = user.profile.phone_confirmed
+    if not confirmation and phone_number:
+        send_phone_code.delay(phone_number, user.id)
+        confirm_message = "Вам отправлен 4-х значный номер для подтверждения"
+        request.session['confirm_message'] = confirm_message
+        return redirect('profile')
+    else:
+        confirm_message = 'Вы подтвердили свой номер телефона'
+        request.session['confirm_message'] = confirm_message
+        return redirect('profile')

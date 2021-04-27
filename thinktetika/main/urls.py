@@ -13,18 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from django.conf.urls import include
 from django.urls import path
 
 from .validators.validators import group_check
-from .views import index, GoodsListView, GoodsDetalView, CreateProduct, UpdateProduct
+from .views import GoodsListView, GoodsDetalView, CreateProduct, UpdateProduct, IndexView
 from main.models import Product
 
 urlpatterns = [
+                  path('', IndexView.as_view(), name='index'),
                   path('goods/', GoodsListView.as_view(model=Product), name='goods'),
                   path('goods/<int:pk>/', GoodsDetalView.as_view(model=Product), name='good-detail'),
                   path('goods/add', group_check(CreateProduct.as_view()), name='good-add'),
