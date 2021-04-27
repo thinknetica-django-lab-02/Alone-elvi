@@ -45,8 +45,11 @@
                     <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></a>
                 {% endthumbnail %}
                 <strong><a class="nav-link" href="{% url 'profile-update' %}">{{ user.get_username }}</a></strong>
+                <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Выйти</a></li>
                 {% else %}
                     <strong><a class="nav-link" href="{% url 'login' %}">Авторизация</a></strong>
+                                    <atrong><li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_signup' %}">Регистрация</a></li></atrong>
                 {% endif%}
 ||||||| 4710e6f:thinktetika/main/templates/snippets/top-menu.html
                 {% if user.is_authenticated %}
