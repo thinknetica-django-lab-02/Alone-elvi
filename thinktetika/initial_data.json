@@ -1,0 +1,1968 @@
+[
+{
+    "model": "admin.logentry",
+    "id": 1,
+    "fields": {
+        "action_time": "2021-03-24T14:42:19.330Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "/about/ -- О нас",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 2,
+    "fields": {
+        "action_time": "2021-03-24T14:43:09.457Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "localhost",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 3,
+    "fields": {
+        "action_time": "2021-03-24T14:43:15.089Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "/about/ -- О нас",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Sites\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 4,
+    "fields": {
+        "action_time": "2021-03-24T14:43:52.747Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "/about/ -- О нас",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Template name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 5,
+    "fields": {
+        "action_time": "2021-03-24T14:44:21.859Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "/about/ -- О нас",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 6,
+    "fields": {
+        "action_time": "2021-03-24T15:28:29.207Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "3",
+        "object_repr": "http://127.0.0.1:8000",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 7,
+    "fields": {
+        "action_time": "2021-03-24T15:28:34.702Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "/about/ -- О нас",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Sites\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 8,
+    "fields": {
+        "action_time": "2021-03-25T07:15:48.281Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "/about/ -- О нас",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Template name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 9,
+    "fields": {
+        "action_time": "2021-03-25T07:17:09.674Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "/about/ -- О нас",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Template name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 10,
+    "fields": {
+        "action_time": "2021-03-25T07:17:46.478Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "/about/ -- О нас",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Template name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 11,
+    "fields": {
+        "action_time": "2021-03-25T07:18:39.530Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "/about/ -- О нас",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 12,
+    "fields": {
+        "action_time": "2021-03-25T07:20:11.394Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "/about/ -- О нас",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 13,
+    "fields": {
+        "action_time": "2021-03-25T07:33:45.650Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "/about/ -- О нас",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 14,
+    "fields": {
+        "action_time": "2021-03-25T07:34:17.231Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "/about/ -- О нас",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 15,
+    "fields": {
+        "action_time": "2021-03-25T07:35:32.190Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "/contacts/ -- Контакты",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 16,
+    "fields": {
+        "action_time": "2021-03-25T10:03:12.411Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "3",
+        "object_repr": "/ -- Главная",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 17,
+    "fields": {
+        "action_time": "2021-03-25T16:25:04.301Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "/contacts/ -- Контакты",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 18,
+    "fields": {
+        "action_time": "2021-04-01T20:16:06.240Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "/goods/ -- Товары",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 19,
+    "fields": {
+        "action_time": "2021-04-03T21:10:31.979Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "1",
+        "object_repr": "сантехника",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 20,
+    "fields": {
+        "action_time": "2021-04-03T21:10:44.609Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "3",
+        "object_repr": "Свитшот",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 21,
+    "fields": {
+        "action_time": "2021-04-03T21:27:31.717Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "2",
+        "object_repr": "одежда",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 22,
+    "fields": {
+        "action_time": "2021-04-03T21:37:30.010Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "5",
+        "object_repr": "Свитер",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 23,
+    "fields": {
+        "action_time": "2021-04-03T21:37:35.321Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "2",
+        "object_repr": "Ёршик",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 24,
+    "fields": {
+        "action_time": "2021-04-03T21:37:39.678Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "4",
+        "object_repr": "Туфли",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 25,
+    "fields": {
+        "action_time": "2021-04-03T21:37:43.648Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "3",
+        "object_repr": "Свитшот",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 26,
+    "fields": {
+        "action_time": "2021-04-03T21:37:48.504Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "1",
+        "object_repr": "Унитаз",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 27,
+    "fields": {
+        "action_time": "2021-04-03T21:38:26.195Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "1",
+        "object_repr": "Унитаз",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 28,
+    "fields": {
+        "action_time": "2021-04-03T21:38:29.568Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "2",
+        "object_repr": "Ёршик",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 29,
+    "fields": {
+        "action_time": "2021-04-03T21:38:33.751Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "3",
+        "object_repr": "Свитшот",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 30,
+    "fields": {
+        "action_time": "2021-04-04T06:52:22.827Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "1",
+        "object_repr": "Унитаз",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 31,
+    "fields": {
+        "action_time": "2021-04-04T07:40:02.569Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "5",
+        "object_repr": "Свитер",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Size\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 32,
+    "fields": {
+        "action_time": "2021-04-04T07:40:29.933Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "5",
+        "object_repr": "Свитер",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Size\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 33,
+    "fields": {
+        "action_time": "2021-04-04T07:40:51.229Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "3",
+        "object_repr": "обувь",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 34,
+    "fields": {
+        "action_time": "2021-04-04T07:40:54.725Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "5",
+        "object_repr": "Свитер",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 35,
+    "fields": {
+        "action_time": "2021-04-04T07:41:08.197Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "5",
+        "object_repr": "Свитер",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 36,
+    "fields": {
+        "action_time": "2021-04-04T08:33:49.700Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "1",
+        "object_repr": "Унитаз",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 37,
+    "fields": {
+        "action_time": "2021-04-04T08:46:37.425Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "4",
+        "object_repr": "Туфли",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 38,
+    "fields": {
+        "action_time": "2021-04-04T12:16:56.689Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "5",
+        "object_repr": "/accounts/profile/ -- Профиль",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 39,
+    "fields": {
+        "action_time": "2021-04-04T12:19:45.022Z",
+        "user": 1,
+        "content_type": 15,
+        "object_id": "1",
+        "object_repr": "Фамилия Джураев Имя Алишер - e-mail alone_elvi@mailnesia.com",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 40,
+    "fields": {
+        "action_time": "2021-04-04T18:46:24.266Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "7",
+        "object_repr": "Трусы",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 41,
+    "fields": {
+        "action_time": "2021-04-04T19:52:17.240Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "8",
+        "object_repr": "Кроссовки",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 42,
+    "fields": {
+        "action_time": "2021-04-04T19:53:09.283Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "8",
+        "object_repr": "Кроссовки",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 43,
+    "fields": {
+        "action_time": "2021-04-04T19:53:52.754Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "8",
+        "object_repr": "Кроссовки",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 44,
+    "fields": {
+        "action_time": "2021-04-04T19:55:54.019Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "8",
+        "object_repr": "Кроссовки",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 45,
+    "fields": {
+        "action_time": "2021-04-04T19:56:32.001Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "8",
+        "object_repr": "Кроссовки",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 46,
+    "fields": {
+        "action_time": "2021-04-04T20:16:47.306Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "8",
+        "object_repr": "Кроссовки",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 47,
+    "fields": {
+        "action_time": "2021-04-04T20:19:19.448Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "8",
+        "object_repr": "Кроссовки",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0418\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 48,
+    "fields": {
+        "action_time": "2021-04-04T20:53:56.475Z",
+        "user": 1,
+        "content_type": 15,
+        "object_id": "1",
+        "object_repr": "admin",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0414\\u0430\\u0442\\u0430 \\u0440\\u043e\\u0436\\u0434\\u0435\\u043d\\u0438\\u044f\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 49,
+    "fields": {
+        "action_time": "2021-04-04T20:59:01.277Z",
+        "user": 1,
+        "content_type": 15,
+        "object_id": "1",
+        "object_repr": "admin",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 50,
+    "fields": {
+        "action_time": "2021-04-04T21:02:00.439Z",
+        "user": 1,
+        "content_type": 15,
+        "object_id": "1",
+        "object_repr": "admin",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 51,
+    "fields": {
+        "action_time": "2021-04-10T16:36:41.379Z",
+        "user": 1,
+        "content_type": 20,
+        "object_id": "1",
+        "object_repr": "google-login",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 52,
+    "fields": {
+        "action_time": "2021-04-10T21:58:31.136Z",
+        "user": 1,
+        "content_type": 20,
+        "object_id": "1",
+        "object_repr": "google-login",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Client id\", \"Secret key\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 53,
+    "fields": {
+        "action_time": "2021-04-11T15:36:36.948Z",
+        "user": 1,
+        "content_type": 3,
+        "object_id": "2",
+        "object_repr": "sellers",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 54,
+    "fields": {
+        "action_time": "2021-04-11T15:37:06.547Z",
+        "user": 1,
+        "content_type": 4,
+        "object_id": "4",
+        "object_repr": "seller_1",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 55,
+    "fields": {
+        "action_time": "2021-04-11T15:37:50.939Z",
+        "user": 1,
+        "content_type": 4,
+        "object_id": "4",
+        "object_repr": "seller_1",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Groups\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 56,
+    "fields": {
+        "action_time": "2021-04-11T15:38:51.513Z",
+        "user": 1,
+        "content_type": 4,
+        "object_id": "4",
+        "object_repr": "seller_1",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 57,
+    "fields": {
+        "action_time": "2021-04-11T15:43:19.581Z",
+        "user": 1,
+        "content_type": 4,
+        "object_id": "4",
+        "object_repr": "seller_1",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Groups\", \"Last login\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 58,
+    "fields": {
+        "action_time": "2021-04-11T15:43:52.794Z",
+        "user": 1,
+        "content_type": 4,
+        "object_id": "4",
+        "object_repr": "seller_1",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 59,
+    "fields": {
+        "action_time": "2021-04-11T15:49:11.271Z",
+        "user": 1,
+        "content_type": 4,
+        "object_id": "4",
+        "object_repr": "seller_1",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 60,
+    "fields": {
+        "action_time": "2021-04-11T20:58:50.387Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "/goods/ -- Товары",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 61,
+    "fields": {
+        "action_time": "2021-04-11T21:00:34.675Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "6",
+        "object_repr": "/good-detail/ -- О товаре",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 62,
+    "fields": {
+        "action_time": "2021-04-11T21:04:39.088Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "/goods/ -- Товары",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 63,
+    "fields": {
+        "action_time": "2021-04-11T21:06:16.855Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "6",
+        "object_repr": "/good-detail/ -- О товаре",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 64,
+    "fields": {
+        "action_time": "2021-04-11T21:06:22.902Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "/goods/ -- Товары",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 65,
+    "fields": {
+        "action_time": "2021-04-12T06:11:19.649Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "10",
+        "object_repr": "Кроссовки Adidas",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 66,
+    "fields": {
+        "action_time": "2021-04-12T06:11:34.239Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "10",
+        "object_repr": "Кроссовки Adidas",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u043e\\u0438\\u043c\\u043e\\u0441\\u0442\\u044c\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 67,
+    "fields": {
+        "action_time": "2021-04-12T06:19:51.928Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "11",
+        "object_repr": "Кроссовки FILA",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "id": 68,
+    "fields": {
+        "action_time": "2021-04-15T14:57:11.679Z",
+        "user": 1,
+        "content_type": 4,
+        "object_id": "1",
+        "object_repr": "admin",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Email address\"]}}]"
+    }
+},
+{
+    "model": "auth.group",
+    "id": 1,
+    "fields": {
+        "name": "common users",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "id": 2,
+    "fields": {
+        "name": "sellers",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "id": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$216000$Sg1gGxfzGV5y$m0JY4MwPFvgBQ9BG1k1e37wIbNhGR61K0qNAWOmEHgk=",
+        "last_login": "2021-04-23T23:00:17.492Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "alone_elvi@mailnesia.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-03-23T20:24:46Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "id": 2,
+    "fields": {
+        "password": "!Rf4PCgQsnzZgcZxuz6E2Zeeaph7liUoSnd5dUCLi",
+        "last_login": "2021-04-11T09:00:18.789Z",
+        "is_superuser": false,
+        "username": "admin_1",
+        "first_name": "Tests",
+        "last_name": "For",
+        "email": "alone_elvi@mailnesia.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-04-10T22:14:46.421Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "id": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$216000$aW4B6D4PqTUk$+dKvlrHDMllys5+PNlIe9s3axRx7uODuB1FhKsfWu/0=",
+        "last_login": "2021-04-11T14:23:02.197Z",
+        "is_superuser": false,
+        "username": "admin_2",
+        "first_name": "",
+        "last_name": "",
+        "email": "alone5elvi@mailnesia.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-04-11T14:23:02.059Z",
+        "groups": [
+            1
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "id": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$216000$doH6WO2rUB7u$9zxbUPn7XqITIfjoDoMQf9/B1uyuHi68Aro+evERQQ0=",
+        "last_login": "2021-04-11T15:48:01Z",
+        "is_superuser": false,
+        "username": "seller_1",
+        "first_name": "Иван",
+        "last_name": "Продавец",
+        "email": "ivan@mailnesia.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-04-11T15:37:06Z",
+        "groups": [
+            1,
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "id": "8qokyphw3vq7c6mac350iyr7q05mxyag",
+    "fields": {
+        "session_data": ".eJyNU9ly2jAU_ZVWzwEbb4l5qlswJGFLgbTQ6XiELBuBbDmSHHAy_HtlbJKQ6aYn3fXonnP1DARDBFKIEMtTGVQWZTFJQfsZ1O7ySkLQTnNKL0AuMA9ezYyzRxJiDtogZiymGKiUMgxaumk5hnNlO4Zr2rpr6qbeUlEKhQxqjKpHCCUONoyk-KUt3ksOAxWAJ_Q_9sMJJFTFI8YlFlI4zqe4dDURS1T4EXMSERwGdZ7kOb4AKUywqpmVBR98xlViTB5xGrwNKGcEE0KLk7dKzAiSOS_ttZSZaGsaXdvNavqSHcRSiVNZ4msNe-LtdwM5sqeW5r2c6zd3T_OGyzxH6QKzSKdzNo_11nV8xxdjzG5HursUd5pwnQbSsjWTrLnJ4pJGhiAtH8FzcDhUupwrlUEhdoyX3H0crXx3ZnuzgeFNVuzbLh5fevGV0Wdo8YA_T_z-iibZyix-qw8RgcgzzCuICFKBK7yalpInwlXVO_KOnc6o-4dWJZCEUfQCohwQSSXMSbezVQGGbrQautVo6TPDaLestuU0LaO1BIoP1UjikpBU7ZLK1eptFppa2YhQrIHj9iIshApXA6syxLJ6JpjLdZBBDpMyoex5fH4Aw5CrIqy8P_7yM_5zL0-TZZwkkBeVefh5ASTb4vRcUZhlbwBOv_bVU5eAAhpuE-pe1HemQ2-3uUYdDmWP91ezbTS8fxj37bjbM7t7vRjw7ubuBg-fiofOXMxvJw3G_dDfeIQEdGwkxc4Y7aN88dSPrnzYm9q0w-5vw8HXRvjdM7dehm6mezMZLlGf-d3p3Panetib68v7sHCDL2yaXDaszhDr_tanqZ2JW9OSg8UI1K8NBEYcy4pxvM-IojaA8p245lFcu2m4hhL3cPgFo-qMjw:1lVLsM:v03wcy2vRCeyDZjE73tOVYfyT3cs4kCy0ZK1PE4bHL4",
+        "expire_date": "2021-04-24T22:14:46.427Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "id": "jdgvvkte4z6o4zt82utvbbf6wyecmk99",
+    "fields": {
+        "session_data": ".eJxVjDFvgzAQhf_LzQgFYmPImKlDs0TqVFXofJyBQGxim6UR_72mypLt3vu-d08IjkackcitNrYhYmQ4fT9h8Y44BDjB7PrRQgaB3JIYpBPXOLQLerzvAmwZmGm6fn343_5x_oSfDNp_ZQ3s27FLTgFvnUaa2O6gu6HtXU7ORj_qfFfyFw35xXU8n1_u24MBw5DWQsqyK0RdyaopWPNRyLJRXKLUbJQ41FgJoxQdZEXGsKFSY9MYoY6SdAqw_QHoclWq:1lVVrn:wt3rgOHvLb4mH4WX4F6Wh1attp83pEMf8mbdjMJBxnA",
+        "expire_date": "2021-04-25T08:54:51.163Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "id": "u8bngfvijrse0jij7h5wucmllgdyvs7e",
+    "fields": {
+        "session_data": ".eJxVjEEKwyAQAP_iuYjZSFx77L1vkHVXa9piICan0L8XIYf2OjPMoQLtWwl7S2uYRV3VoC6_LBK_Uu1CnlQfi-albuscdU_0aZu-L5Let7P9GxRqpW-FEG0WzNGMmJyhmBl4AvSMjsD6bAeMhp1x4AAESYQnSjED2NGrzxf0bTg3:1la4mX:NmzU6IBYZwedvpgf7vMhcLivhd889Zn6EfLBjxdKrns",
+        "expire_date": "2021-05-07T23:00:17.666Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "id": "w127zrdr93ao11zncpmeyk7ee8pv6qe4",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGFslA8eu83kF1YpGpoUtqT8d9tkx70OPPezFsE3NYStsZLmJK4CiUuvx1hfHI9QHpgvc8yznVdJpKHIk_a5Dgnft1O9--gYCv72gDopMxgwXrFxL0B7R1rBOLsTDegNdm52IGNOXOOmtD7bFwPkfYgPl_MUDgW:1lX3QO:Du5b1yytC5PX-AXkME_WRwm8TxE9dcL_but4yInSb14",
+        "expire_date": "2021-04-29T14:56:56.448Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "id": "z2ax8dthgcf2eslxv7f3a653whdav12d",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAURP-FtSE8L-DSfb-BXB6VqoGktCvjv0uTLnQ1yZwz8yYe9634vefVL4lciSKX3y5gfOZ6gPTAem80trqtS6CHQk_a6dRSft1O9--gYC9j7aRCDY5pLbhSyQQhmFHOgZDCGg4xMmFmGM4IzFmqyA1oiNbOTFtJPl-VHDYI:1lVcJd:eiuY_QHVbtCYFytIJ0ph1krOwVlnOW3rtAJ5XZHaIJ4",
+        "expire_date": "2021-04-25T15:48:01.990Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "id": "z9ebr3i3w4t76w0j1f6qce1vx74rpwja",
+    "fields": {
+        "session_data": "eyJzb2NpYWxhY2NvdW50X3N0YXRlIjpbeyJwcm9jZXNzIjoibG9naW4iLCJzY29wZSI6IiIsImF1dGhfcGFyYW1zIjoiIn0sInpXNlNFWDVxeGJicSJdfQ:1lVHn2:QvVb6YObDLrvn4GzKmqEGXTO-oTfd66PQc8-mSMGYM8",
+        "expire_date": "2021-04-24T17:53:00.803Z"
+    }
+},
+{
+    "model": "sites.site",
+    "id": 1,
+    "fields": {
+        "domain": "example.com",
+        "name": "example.com"
+    }
+},
+{
+    "model": "sites.site",
+    "id": 2,
+    "fields": {
+        "domain": "localhost",
+        "name": "Django Site"
+    }
+},
+{
+    "model": "sites.site",
+    "id": 3,
+    "fields": {
+        "domain": "http://127.0.0.1:8000",
+        "name": "Django Site"
+    }
+},
+{
+    "model": "flatpages.flatpage",
+    "id": 1,
+    "fields": {
+        "url": "/about/",
+        "title": "О нас",
+        "content": "Информация о нас",
+        "enable_comments": false,
+        "template_name": "pages/about.html",
+        "registration_required": false,
+        "sites": [
+            3
+        ]
+    }
+},
+{
+    "model": "flatpages.flatpage",
+    "id": 2,
+    "fields": {
+        "url": "/contacts/",
+        "title": "Контакты",
+        "content": "<p>Наши контакты:</p>\r\n\r\n<p>Телефон:</p>\r\n\r\n<p>email:</p>\r\n\r\n<p>WhatsApp:</p>\r\n\r\n<p>Telegram:</p>",
+        "enable_comments": false,
+        "template_name": "pages/contacts.html",
+        "registration_required": false,
+        "sites": [
+            3
+        ]
+    }
+},
+{
+    "model": "flatpages.flatpage",
+    "id": 3,
+    "fields": {
+        "url": "/",
+        "title": "Главная",
+        "content": "Это главная страница сайта",
+        "enable_comments": false,
+        "template_name": "pages/index.html",
+        "registration_required": false,
+        "sites": [
+            3
+        ]
+    }
+},
+{
+    "model": "flatpages.flatpage",
+    "id": 4,
+    "fields": {
+        "url": "/goods/",
+        "title": "Товары",
+        "content": "",
+        "enable_comments": false,
+        "template_name": "goods/",
+        "registration_required": false,
+        "sites": [
+            3
+        ]
+    }
+},
+{
+    "model": "flatpages.flatpage",
+    "id": 5,
+    "fields": {
+        "url": "/accounts/profile/",
+        "title": "Профиль",
+        "content": "",
+        "enable_comments": false,
+        "template_name": "pages/profile.html",
+        "registration_required": false,
+        "sites": [
+            3
+        ]
+    }
+},
+{
+    "model": "main.contacts",
+    "id": 1,
+    "fields": {
+        "address": "Moscow Kremlin 1",
+        "phone": "+74957777777",
+        "email": "sob@mos.ru",
+        "whatsapp": "",
+        "telegram": "",
+        "viber": "",
+        "instagram": "",
+        "map": ""
+    }
+},
+{
+    "model": "main.size",
+    "id": 1,
+    "fields": {
+        "size": "XS"
+    }
+},
+{
+    "model": "main.size",
+    "id": 2,
+    "fields": {
+        "size": "S"
+    }
+},
+{
+    "model": "main.size",
+    "id": 3,
+    "fields": {
+        "size": "M"
+    }
+},
+{
+    "model": "main.size",
+    "id": 4,
+    "fields": {
+        "size": "L"
+    }
+},
+{
+    "model": "main.size",
+    "id": 5,
+    "fields": {
+        "size": "XL"
+    }
+},
+{
+    "model": "main.size",
+    "id": 6,
+    "fields": {
+        "size": "XXL"
+    }
+},
+{
+    "model": "main.size",
+    "id": 7,
+    "fields": {
+        "size": "XXXL"
+    }
+},
+{
+    "model": "main.size",
+    "id": 8,
+    "fields": {
+        "size": "BXL"
+    }
+},
+{
+    "model": "main.size",
+    "id": 9,
+    "fields": {
+        "size": "BXXL"
+    }
+},
+{
+    "model": "main.size",
+    "id": 10,
+    "fields": {
+        "size": "BXXXL"
+    }
+},
+{
+    "model": "main.category",
+    "id": 1,
+    "fields": {
+        "title": "Сантехника"
+    }
+},
+{
+    "model": "main.category",
+    "id": 2,
+    "fields": {
+        "title": "Одежда"
+    }
+},
+{
+    "model": "main.category",
+    "id": 3,
+    "fields": {
+        "title": "Обувь"
+    }
+},
+{
+    "model": "main.category",
+    "id": 4,
+    "fields": {
+        "title": "Одежда"
+    }
+},
+{
+    "model": "main.category",
+    "id": 5,
+    "fields": {
+        "title": "Обувь"
+    }
+},
+{
+    "model": "main.category",
+    "id": 6,
+    "fields": {
+        "title": "Одежда"
+    }
+},
+{
+    "model": "main.category",
+    "id": 7,
+    "fields": {
+        "title": "Обувь"
+    }
+},
+{
+    "model": "main.category",
+    "id": 8,
+    "fields": {
+        "title": "Одежда"
+    }
+},
+{
+    "model": "main.category",
+    "id": 9,
+    "fields": {
+        "title": "Обувь"
+    }
+},
+{
+    "model": "main.category",
+    "id": 10,
+    "fields": {
+        "title": "Одежда"
+    }
+},
+{
+    "model": "main.category",
+    "id": 11,
+    "fields": {
+        "title": "Обувь"
+    }
+},
+{
+    "model": "main.category",
+    "id": 12,
+    "fields": {
+        "title": "Одежда"
+    }
+},
+{
+    "model": "main.category",
+    "id": 13,
+    "fields": {
+        "title": "Обувь"
+    }
+},
+{
+    "model": "main.category",
+    "id": 14,
+    "fields": {
+        "title": "Одежда"
+    }
+},
+{
+    "model": "main.category",
+    "id": 15,
+    "fields": {
+        "title": "Обувь"
+    }
+},
+{
+    "model": "main.category",
+    "id": 16,
+    "fields": {
+        "title": "Одежда"
+    }
+},
+{
+    "model": "main.category",
+    "id": 17,
+    "fields": {
+        "title": "Обувь"
+    }
+},
+{
+    "model": "main.category",
+    "id": 18,
+    "fields": {
+        "title": "Одежда"
+    }
+},
+{
+    "model": "main.category",
+    "id": 19,
+    "fields": {
+        "title": "Обувь"
+    }
+},
+{
+    "model": "main.category",
+    "id": 20,
+    "fields": {
+        "title": "Одежда"
+    }
+},
+{
+    "model": "main.category",
+    "id": 21,
+    "fields": {
+        "title": "Обувь"
+    }
+},
+{
+    "model": "main.category",
+    "id": 22,
+    "fields": {
+        "title": "Одежда"
+    }
+},
+{
+    "model": "main.category",
+    "id": 23,
+    "fields": {
+        "title": "Обувь"
+    }
+},
+{
+    "model": "main.category",
+    "id": 24,
+    "fields": {
+        "title": "Одежда"
+    }
+},
+{
+    "model": "main.category",
+    "id": 25,
+    "fields": {
+        "title": "Обувь"
+    }
+},
+{
+    "model": "main.category",
+    "id": 26,
+    "fields": {
+        "title": "Одежда"
+    }
+},
+{
+    "model": "main.category",
+    "id": 27,
+    "fields": {
+        "title": "Обувь"
+    }
+},
+{
+    "model": "main.category",
+    "id": 28,
+    "fields": {
+        "title": "Одежда"
+    }
+},
+{
+    "model": "main.category",
+    "id": 29,
+    "fields": {
+        "title": "Обувь"
+    }
+},
+{
+    "model": "main.tag",
+    "id": 1,
+    "fields": {
+        "title": "сантехника"
+    }
+},
+{
+    "model": "main.tag",
+    "id": 2,
+    "fields": {
+        "title": "одежда"
+    }
+},
+{
+    "model": "main.tag",
+    "id": 3,
+    "fields": {
+        "title": "обувь"
+    }
+},
+{
+    "model": "main.seller",
+    "id": 1,
+    "fields": {
+        "title": "Мэрия города Москвы",
+        "contacts": 1
+    }
+},
+{
+    "model": "main.product",
+    "id": 1,
+    "fields": {
+        "title": "Унитаз",
+        "sku": "10.11.12",
+        "image": "",
+        "size": 1,
+        "category": 1,
+        "weight": "10.10",
+        "quantity": "1.00",
+        "price": "100001.00",
+        "seller": 1,
+        "pub_date": "2021-04-12T11:44:09.601Z",
+        "tags": [
+            1
+        ]
+    }
+},
+{
+    "model": "main.product",
+    "id": 2,
+    "fields": {
+        "title": "Ёршик",
+        "sku": "10.11.13",
+        "image": "",
+        "size": 2,
+        "category": 1,
+        "weight": "0.10",
+        "quantity": "2.00",
+        "price": "1001.00",
+        "seller": 1,
+        "pub_date": "2021-04-12T11:44:09.601Z",
+        "tags": [
+            1
+        ]
+    }
+},
+{
+    "model": "main.product",
+    "id": 3,
+    "fields": {
+        "title": "Свитшот",
+        "sku": "1211212",
+        "image": "",
+        "size": 3,
+        "category": 2,
+        "weight": "0.00",
+        "quantity": "1.00",
+        "price": "1500.01",
+        "seller": 1,
+        "pub_date": "2021-04-12T11:44:09.601Z",
+        "tags": [
+            2
+        ]
+    }
+},
+{
+    "model": "main.product",
+    "id": 4,
+    "fields": {
+        "title": "Туфли",
+        "sku": "112233.122",
+        "image": "",
+        "size": 2,
+        "category": 3,
+        "weight": "0.56",
+        "quantity": "1.00",
+        "price": "1200.01",
+        "seller": 1,
+        "pub_date": "2021-04-12T11:44:09.601Z",
+        "tags": [
+            3
+        ]
+    }
+},
+{
+    "model": "main.product",
+    "id": 5,
+    "fields": {
+        "title": "Свитер",
+        "sku": "1211214",
+        "image": "",
+        "size": 5,
+        "category": 2,
+        "weight": "0.30",
+        "quantity": "1.00",
+        "price": "1500.01",
+        "seller": 1,
+        "pub_date": "2021-04-12T11:44:09.601Z",
+        "tags": [
+            2
+        ]
+    }
+},
+{
+    "model": "main.product",
+    "id": 6,
+    "fields": {
+        "title": "Трусы",
+        "sku": "ТР838.22",
+        "image": "",
+        "size": 5,
+        "category": 2,
+        "weight": "0.20",
+        "quantity": "1.00",
+        "price": "500.00",
+        "seller": 1,
+        "pub_date": "2021-04-12T11:44:09.601Z",
+        "tags": [
+            2
+        ]
+    }
+},
+{
+    "model": "main.product",
+    "id": 8,
+    "fields": {
+        "title": "Кроссовки",
+        "sku": "КР46",
+        "image": "products/m5478.jpg",
+        "size": 5,
+        "category": 3,
+        "weight": "0.50",
+        "quantity": "1.00",
+        "price": "4600.00",
+        "seller": 1,
+        "pub_date": "2021-04-12T11:44:09.601Z",
+        "tags": [
+            3
+        ]
+    }
+},
+{
+    "model": "main.product",
+    "id": 9,
+    "fields": {
+        "title": "Кроссовки Nike",
+        "sku": "КР461",
+        "image": "products/m5478_LlKWZaT.jpg",
+        "size": 4,
+        "category": 3,
+        "weight": "0.50",
+        "quantity": "1.00",
+        "price": "60000.00",
+        "seller": 1,
+        "pub_date": "2021-04-12T11:44:09.601Z",
+        "tags": [
+            3
+        ]
+    }
+},
+{
+    "model": "main.product",
+    "id": 10,
+    "fields": {
+        "title": "Кроссовки Adidas",
+        "sku": "AD02314",
+        "image": "products/adidas-gazelle-moscow-spb-012_V0S74rM.jpeg",
+        "size": 4,
+        "category": 3,
+        "weight": "1.00",
+        "quantity": "1.00",
+        "price": "10001.00",
+        "seller": 1,
+        "pub_date": "2021-04-12T11:44:09.601Z",
+        "tags": [
+            3
+        ]
+    }
+},
+{
+    "model": "main.product",
+    "id": 11,
+    "fields": {
+        "title": "Кроссовки FILA",
+        "sku": "FI5872",
+        "image": "products/28385510299_dhpKxM5.jpg",
+        "size": 1,
+        "category": 3,
+        "weight": "1.00",
+        "quantity": "1.00",
+        "price": "4350.00",
+        "seller": 1,
+        "pub_date": "2021-04-12T11:44:09.601Z",
+        "tags": [
+            3
+        ]
+    }
+},
+{
+    "model": "main.profile",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "birth_date": "1987-04-04",
+        "avatar": "avatars/Funko-Pop-Animation-Avatar-The-Last-Airbender-Sokka-2342704_1024x1024.jpg",
+        "phone_number": null,
+        "phone_confirmed": 1234
+    }
+},
+{
+    "model": "main.profile",
+    "pk": 2,
+    "fields": {
+        "user": 3,
+        "birth_date": "2021-04-11",
+        "avatar": "",
+        "phone_number": null,
+        "phone_confirmed": 1234
+    }
+},
+{
+    "model": "main.profile",
+    "pk": 3,
+    "fields": {
+        "user": 4,
+        "birth_date": "2021-04-11",
+        "avatar": "",
+        "phone_number": null,
+        "phone_confirmed": 1234
+    }
+},
+{
+    "model": "main.subscriber",
+    "id": 1,
+    "fields": {
+        "user": 1
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||image||0442417fbfb073e5e69b6a2e53b86306",
+    "fields": {
+        "value": "{\"name\": \"m5478.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 266]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||image||0d2d70ac2dcedf9dcd353d0130604d0a",
+    "fields": {
+        "value": "{\"name\": \"cache/3d/ab/3dabee0e96092f5d61f2a4d108badcc5.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [100, 100]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||image||1b363b53eb0af3ede37aaef6f4cd32b4",
+    "fields": {
+        "value": "{\"name\": \"products/m5478_LlKWZaT.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 266]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||image||427713a11ea67f544863f56e29d405f5",
+    "fields": {
+        "value": "{\"name\": \"cache/39/ad/39ad6a9a3e28ceec403acd35d00f3f8e.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [100, 100]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||image||46e8af997e306e8512579d3c2566a5cb",
+    "fields": {
+        "value": "{\"name\": \"avatars/Funko-Pop-Animation-Avatar-The-Last-Airbender-Sokka-2342704_1024x1024.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [700, 1000]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||image||5af08b4cd661849c7d5dcc4442d12466",
+    "fields": {
+        "value": "{\"name\": \"cache/5e/68/5e6883177b95f2c3d9c280c0884c1cb5.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [30, 30]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||image||5ff570da504af051985426cc20379ead",
+    "fields": {
+        "value": "{\"name\": \"products/m5478.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 266]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||image||7453d420d68ba4627501e6ac97389905",
+    "fields": {
+        "value": "{\"name\": \"cache/ca/1e/ca1ed2182a0c09d0cf5b2af070220f6c.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [100, 100]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||image||7a96223af2f5c0778618d5bfec431d1b",
+    "fields": {
+        "value": "{\"name\": \"cache/be/b5/beb5722c0aa4d0d558b6fb4ef1093e10.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [100, 100]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||image||d88a6028edc3328d5ac98f2ac6303d89",
+    "fields": {
+        "value": "{\"name\": \"avatars/m5478.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 266]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||image||dedbab6c4ad5ab0e25dbe6cbdd86ab9b",
+    "fields": {
+        "value": "{\"name\": \"cache/d0/aa/d0aabc16e4c7a26b51d631f01134abfa.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [30, 30]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||image||e2ce190cf096b1a8d70f915090dfecef",
+    "fields": {
+        "value": "{\"name\": \"products/28385510299_dhpKxM5.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [2000, 1180]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||image||f074ddb8587c828565942536d5fb072c",
+    "fields": {
+        "value": "{\"name\": \"cache/29/8f/298fab8c9d84f75b5702ab078ba259ad.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [100, 100]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||image||fde5e9aca78a09073f8a1e424a14dc4f",
+    "fields": {
+        "value": "{\"name\": \"products/adidas-gazelle-moscow-spb-012_V0S74rM.jpeg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [1200, 1200]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||thumbnails||0442417fbfb073e5e69b6a2e53b86306",
+    "fields": {
+        "value": "[\"427713a11ea67f544863f56e29d405f5\"]"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||thumbnails||1b363b53eb0af3ede37aaef6f4cd32b4",
+    "fields": {
+        "value": "[\"0d2d70ac2dcedf9dcd353d0130604d0a\"]"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||thumbnails||46e8af997e306e8512579d3c2566a5cb",
+    "fields": {
+        "value": "[\"dedbab6c4ad5ab0e25dbe6cbdd86ab9b\"]"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||thumbnails||5ff570da504af051985426cc20379ead",
+    "fields": {
+        "value": "[\"7453d420d68ba4627501e6ac97389905\"]"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||thumbnails||d88a6028edc3328d5ac98f2ac6303d89",
+    "fields": {
+        "value": "[\"5af08b4cd661849c7d5dcc4442d12466\"]"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||thumbnails||e2ce190cf096b1a8d70f915090dfecef",
+    "fields": {
+        "value": "[\"7a96223af2f5c0778618d5bfec431d1b\"]"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "id": "sorl-thumbnail||thumbnails||fde5e9aca78a09073f8a1e424a14dc4f",
+    "fields": {
+        "value": "[\"f074ddb8587c828565942536d5fb072c\"]"
+    }
+},
+{
+    "model": "account.emailaddress",
+    "id": 1,
+    "fields": {
+        "user": 1,
+        "email": "admin@localhost.local",
+        "verified": false,
+        "primary": false
+    }
+},
+{
+    "model": "account.emailaddress",
+    "id": 2,
+    "fields": {
+        "user": 1,
+        "email": "fortests66@gmail.com",
+        "verified": false,
+        "primary": false
+    }
+},
+{
+    "model": "account.emailaddress",
+    "id": 3,
+    "fields": {
+        "user": 2,
+        "email": "alone_elvi@mailnesia.com",
+        "verified": false,
+        "primary": true
+    }
+},
+{
+    "model": "account.emailaddress",
+    "id": 4,
+    "fields": {
+        "user": 3,
+        "email": "alone5elvi@mailnesia.com",
+        "verified": false,
+        "primary": true
+    }
+},
+{
+    "model": "socialaccount.socialapp",
+    "id": 1,
+    "fields": {
+        "provider": "google",
+        "name": "google-login",
+        "client_id": "908191621132-2j0lk593ni99agdfbl4ul58sk1essfn3.apps.googleusercontent.com",
+        "secret": "LL-Vzk6rN5fkEVt6VGrTAZmQ",
+        "key": "",
+        "sites": [
+            3
+        ]
+    }
+},
+{
+    "model": "socialaccount.socialaccount",
+    "id": 1,
+    "fields": {
+        "user": 2,
+        "provider": "google",
+        "uid": "103462685629350930301",
+        "last_login": "2021-04-11T09:00:18.778Z",
+        "date_joined": "2021-04-10T22:15:04.252Z",
+        "extra_data": "{\"id\": \"103462685629350930301\", \"email\": \"fortests66@gmail.com\", \"verified_email\": true, \"name\": \"Tests For\", \"given_name\": \"Tests\", \"family_name\": \"For\", \"picture\": \"https://lh5.googleusercontent.com/-5PAxwLtN5S4/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnYeof0lUoUg01IgQrYOeoKN09ZsQ/s96-c/photo.jpg\", \"locale\": \"ru\"}"
+    }
+},
+{
+    "model": "django_celery_beat.intervalschedule",
+    "id": 1,
+    "fields": {
+        "every": 10,
+        "period": "seconds"
+    }
+},
+{
+    "model": "django_celery_beat.crontabschedule",
+    "id": 1,
+    "fields": {
+        "minute": "0",
+        "hour": "4",
+        "day_of_week": "*",
+        "day_of_month": "*",
+        "month_of_year": "*",
+        "timezone": "UTC"
+    }
+},
+{
+    "model": "django_celery_beat.periodictasks",
+    "id": 1,
+    "fields": {
+        "last_update": "2021-04-16T13:29:19.123Z"
+    }
+},
+{
+    "model": "django_celery_beat.periodictask",
+    "id": 1,
+    "fields": {
+        "name": "celery.backend_cleanup",
+        "task": "celery.backend_cleanup",
+        "interval": null,
+        "crontab": 1,
+        "solar": null,
+        "clocked": null,
+        "args": "[]",
+        "kwargs": "{}",
+        "queue": null,
+        "exchange": null,
+        "routing_key": null,
+        "headers": "{}",
+        "priority": null,
+        "expires": null,
+        "expire_seconds": 43200,
+        "one_off": false,
+        "start_time": null,
+        "enabled": true,
+        "last_run_at": null,
+        "total_run_count": 0,
+        "date_changed": "2021-04-16T13:29:19.112Z",
+        "description": ""
+    }
+},
+{
+    "model": "django_celery_beat.periodictask",
+    "id": 2,
+    "fields": {
+        "name": "example-task",
+        "task": "apps.main.tasks.sending_new_products_by_scheduler",
+        "interval": 1,
+        "crontab": null,
+        "solar": null,
+        "clocked": null,
+        "args": "[]",
+        "kwargs": "{}",
+        "queue": null,
+        "exchange": null,
+        "routing_key": null,
+        "headers": "{}",
+        "priority": null,
+        "expires": null,
+        "expire_seconds": null,
+        "one_off": false,
+        "start_time": null,
+        "enabled": true,
+        "last_run_at": "2021-04-16T22:23:25.897Z",
+        "total_run_count": 2016,
+        "date_changed": "2021-04-16T22:23:35.892Z",
+        "description": ""
+    }
+}
+]
