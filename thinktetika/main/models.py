@@ -108,15 +108,18 @@ class Product(models.Model):
     """
     title = models.CharField('Название', max_length=150, default='')
     sku = models.CharField('Артикул', max_length=20, default='')
-    image = models.ImageField('Изображение', upload_to='products/', null=True, blank=True)
+    image = models.ImageField('Изображение', upload_to='products/', null=True,
+                              blank=True)
     size = models.ForeignKey('Size', on_delete=models.CASCADE)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag')
     weight = models.DecimalField('Вес', max_digits=10, decimal_places=2)
-    quantity = models.DecimalField('Количество', max_digits=10, decimal_places=2)
+    quantity = models.DecimalField('Количество', max_digits=10,
+                                   decimal_places=2)
     price = models.DecimalField('Стоимость', max_digits=10, decimal_places=2)
     seller = models.ForeignKey('Seller', on_delete=models.CASCADE, null=False)
-    pub_date = models.DateTimeField('Дата заполнения', default=timezone.now, blank=True)
+    pub_date = models.DateTimeField('Дата заполнения', default=timezone.now,
+                                    blank=True)
 
     def __str__(self):
         """Метод возвращает название запрашиваемого товара."""
@@ -134,8 +137,10 @@ class Product(models.Model):
 class Profile(models.Model):
     """Класс Profile используется для работы с профилями пользователей"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    birth_date = models.DateField('Дата рождения', validators=[validate_age], default=timezone.now().date())
-    avatar = models.ImageField('Аватар', upload_to='avatars/', null=True, blank=True)
+    birth_date = models.DateField('Дата рождения', validators=[validate_age],
+                                  default=timezone.now().date())
+    avatar = models.ImageField('Аватар', upload_to='avatars/', null=True,
+                               blank=True)
     phone_number = PhoneField('Номер телефона', blank=True)
     phone_confirmed = models.PositiveIntegerField('Подтверждено')
 
@@ -160,7 +165,8 @@ class SMSConfirm(models.Model):
 
 class Subscriber(models.Model):
     """Класс Subscriber используется для отправки рассылки пользователям подписанным на неё"""
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="subscriber")
+    user = models.OneToOneField(User, on_delete=models.CASCADE,
+                                related_name="subscriber")
 
     class Meta:
         """Класс формирующий название в единственном и множественном числах"""
@@ -184,7 +190,8 @@ def get_subscriber(sender, instance, created, **kwargs):
         emails = [e.user.email for e in Subscriber.objects.all()]
         subject = new_product_email_template.subject + {instance.title}
         text_content = new_product_email_template.text_content + {
-            instance.title} + new_product_email_template.text_content_url + {instance.get_absolute_url()}
+            instance.title} + new_product_email_template.text_content_url + {
+                           instance.get_absolute_url()}
     html_content = f'''
             <ul>
                 <li>Название: {instance.title}</li>
