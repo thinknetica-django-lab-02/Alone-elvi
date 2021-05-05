@@ -25,10 +25,6 @@ class ContactsFactory(DjangoModelFactory):
     telegram = FAKER.phone_number()
     viber = FAKER.phone_number()
     instagram = FAKER.phone_number()
-    logger.warning(
-        "address - {}, phone - {}, email - {}, whatsapp - {}, telegram - {}, viber - {}, instagram - {} ".format(
-            type(address), type(phone), type(email), type(whatsapp),
-            type(telegram), type(viber), type(instagram)))
 
 
 class SellerFactory(DjangoModelFactory):
@@ -40,8 +36,6 @@ class SellerFactory(DjangoModelFactory):
     title = FAKER.company()
     contacts = factory.SubFactory(ContactsFactory)
 
-    logger.warning("Seller title - {}".format(type(title)))
-
 
 class CategoryFactory(DjangoModelFactory):
     """Класс создающий рандомные данные для тестирования модели Category"""
@@ -49,8 +43,7 @@ class CategoryFactory(DjangoModelFactory):
     class Meta:
         model = Category
 
-    title = FAKER.name()
-    logger.warning("Category title - {}".format(type(title)))
+    title = FAKER.word()
 
 
 class SizeFactory(DjangoModelFactory):
@@ -58,10 +51,8 @@ class SizeFactory(DjangoModelFactory):
 
     class Meta:
         model = Size
-        logger.warning(FAKER.country_code())
 
-    size = FAKER.country_code()
-    logger.warning("Size size - {}".format(type(size)))
+    size = FAKER.country_code() + str(FAKER.random_digit())
 
 
 class TagFactory(DjangoModelFactory):
@@ -71,8 +62,7 @@ class TagFactory(DjangoModelFactory):
         model = Tag
         django_get_or_create = ('title',)
 
-    title = str(set([FAKER.word(), FAKER.word(), FAKER.word()]))
-    logger.warning("Tag title - {}".format(title))
+    title = FAKER.word()
 
 
 class ProductFactory(DjangoModelFactory):
@@ -80,42 +70,25 @@ class ProductFactory(DjangoModelFactory):
 
     class Meta:
         model = Product
-        django_get_or_create = ('title',)
-        logger.warning("Product Meta")
 
-    logger.warning("@factory.post_generation")
-
-    @factory.post_generation
-    def tags(self, create, extracted, **kwargs):
-        logger.debug("extracted - {}".format(extracted))
-
-        if not create:
-            logger.warning("extracted - {}".format(extracted))
-            return
-        if extracted:
-            logger.warning("extracted - {}".format(extracted))
-            for _ in extracted:
-                logger.warning("extracted - {}".format(extracted))
-                self.tags.add('TagFactory()')
-
-        else:
-            logger.warning("extracted - {}".format(extracted))
-            tags = TagFactory()
-            self.tags.add(tags)
-
-    logger.warning("@factory.post_generation")
-
-    title = FAKER.name()
+    title = FAKER.word()
     sku = FAKER.country_code() + str(FAKER.random_digit())
     image = FAKER.image_url()
     size = factory.SubFactory(SizeFactory)
     category = factory.SubFactory(CategoryFactory)
     seller = factory.SubFactory(SellerFactory)
 
-    weight = FAKER.numerify()
-    quantity = FAKER.numerify()
-    price = FAKER.numerify()
+    weight = FAKER.random_digit()
+    quantity = FAKER.random_digit()
+    price = FAKER.random_digit()
 
-    logger.warning(
-        "title - {}, sku - {} image - {}, weight - {}, quantity - {}, price - {}, tags - {}".format(
-            type(title), type(sku), type(image), weight, quantity, price, tags))
+    @factory.post_generation
+    def tags(self, create, extracted):
+        if not create:
+            return
+        if extracted:
+            for _ in extracted:
+                self.tags.add(TagFactory())
+        else:
+            tags = TagFactory()
+            self.tags.add(tags)
