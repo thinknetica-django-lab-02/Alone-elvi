@@ -1,0 +1,79 @@
+version: '3.9'
+
+services:
+    db:
+      image: postgres:12.0-alpine
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+      ports:
+        - 5432:5432
+      environment:
+        - POSTGRES_DB=thinktetika
+        - POSTGRES_USER=thinktetika
+        - POSTGRES_PASSWORD=password
+      networks:
+        node_net:
+          ipv4_address: 10.1.2.1
+
+    redis:
+      image: redis
+      restart: always
+      container_name: 'redis'
+      command: redis-server
+      ports:
+        - '6379:6379'
+      volumes:
+        - ./redis-data:/var/lib/redis
+      environment:
+        - REDIS_REPLICATION_MODE=master
+      networks:
+        node_net:
+          ipv4_address: 10.1.2.2
+
+    web:
+      build: .
+      working_dir: /usr/src/thinktetika/thinktetika
+      restart: always
+      container_name: 'thinktetika'
+      command: python manage.py runserver 0.0.0.0:8000
+      volumes:
+        - .:/usr/src/thinktetika
+      ports:
+        - '8000:8000'
+      depends_on:
+        - db
+        - redis
+      networks:
+        node_net:
+          ipv4_address: 10.1.2.3
+
+    celery:
+      build: .
+      working_dir: /usr/src/e_commerce/e_commerce
+      restart: always
+      container_name: 'thinktetika_celery'
+      command: celery -A thinktetika worker -B -l INFO
+      volumes:
+        - .:/usr/src/thinktetika
+      links:
+        - redis
+      depends_on:
+        - web
+        - redis
+        - db
+      networks:
+        node_net:
+          ipv4_address: 10.1.2.4
+
+#postgres volume
+volumes:
+    postgres_data:
+
+
+# networking for the containers
+networks:
+    node_net:
+      ipam:
+        driver: default
+        config:
+          - subnet: 10.1.0.0/16

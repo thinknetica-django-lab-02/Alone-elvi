@@ -61,7 +61,13 @@ class GoodsListView(ListView):
     def get_context_data(self, **kwargs):
         """Получаем список тегов и передаём в адресную строку браузера часть запроса содержащий необходимый тег."""
         context = super(GoodsListView, self).get_context_data(**kwargs)
-        context["tags_list"] = Tag.objects.all()
+        # context["tags_list"] = Tag.objects.all()
+        context["tags_list"] = set()
+        for tag_list in Product.objects.values_list('tags'):
+            if tag_list[0]:
+                for tag in tag_list[0]:
+                    context["tags"].add(tag)
+
         tag = self.request.GET.get("tag")
         if tag:
             context["tags_url"] = "tag={}&".format(tag)
