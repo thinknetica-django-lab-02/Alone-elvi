@@ -107,6 +107,7 @@ class Product(models.Model):
     Может быть связан с классами Category, Product, Size, Tag, Seller по полям совпадающими с именами классов.
     """
     title = models.CharField('Название', max_length=150, default='')
+    description = models.CharField('Описание', max_length=250, default='')
     sku = models.CharField('Артикул', max_length=20, default='')
     image = models.ImageField('Изображение', upload_to='products/', null=True,
                               blank=True)
@@ -120,10 +121,14 @@ class Product(models.Model):
     seller = models.ForeignKey('Seller', on_delete=models.CASCADE, null=False)
     pub_date = models.DateTimeField('Дата заполнения', default=timezone.now,
                                     blank=True)
+    creation_date = models.DateTimeField('Дата создания', default=timezone.now,
+                                         blank=True)
+    is_published = models.BooleanField('Опубликовано', default=False)
+    is_archive = models.BooleanField('Архивный', default=False)
 
     def __str__(self):
         """Метод возвращает название запрашиваемого товара."""
-        return self.title
+        return f"{self.title} - {self.category} - {self.tags}"
 
     class Meta:
         """Класс формирующий название в единственном и множественном числах"""
@@ -146,7 +151,7 @@ class Profile(models.Model):
 
     def __str__(self):
         """Метод возвращает имя пользователя"""
-        return self.user.username
+        return f"{self.user.username}"
 
     class Meta:
         """Класс формирующий название в единственном и множественном числах"""
@@ -164,7 +169,10 @@ class SMSConfirm(models.Model):
 
 
 class Subscriber(models.Model):
-    """Класс Subscriber используется для отправки рассылки пользователям подписанным на неё"""
+    """
+    Класс Subscriber используется для отправки рассылки
+    пользователям подписанным на неё
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE,
                                 related_name="subscriber")
 
@@ -186,6 +194,9 @@ def sending_html_mail(subject, text_content, html_content, from_email, to_list):
 
 @receiver(post_save, sender=Product)
 def get_subscriber(sender, instance, created, **kwargs):
+    subject = ''
+    text_content = ''
+    emails = []
     if created:
         emails = [e.user.email for e in Subscriber.objects.all()]
         subject = new_product_email_template.subject + {instance.title}
@@ -197,7 +208,8 @@ def get_subscriber(sender, instance, created, **kwargs):
                 <li>Название: {instance.title}</li>
                 <li>Цена: {instance.price}</li>
             </ul>
-            Подробности можно получить по <a href="{instance.get_absolute_url()}">ссылке</a>.
+            Подробности можно получить по 
+            <a href="{instance.get_absolute_url()}">ссылке</a>.
         '''
     from_email = new_product_email_template.from_email
     sending_html_mail(subject, text_content, html_content, from_email, emails)
