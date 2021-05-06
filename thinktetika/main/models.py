@@ -87,8 +87,10 @@ class Seller(models.Model):
 
 
 class Product(models.Model):
-    """Класс Product используется для хранения данных по товару.
-    Может быть связан с классами Category, Product, Size, Tag, Seller по полям совпадающими с именами классов.
+    """
+    Класс Product используется для хранения данных по товару.
+    Может быть связан с классами Category, Product, Size,
+    Tag, Seller по полям совпадающими с именами классов.
     """
     title = models.CharField('Название', max_length=150, default='')
     description = models.CharField('Описание', max_length=250, default='')
@@ -150,7 +152,8 @@ class Profile(models.Model):
     avatar = models.ImageField('Аватар', upload_to='avatars/', null=True,
                                blank=True)
     phone_number = PhoneField('Номер телефона', blank=True)
-    phone_confirmed = models.PositiveIntegerField('Подтверждено')
+    phone_confirmed = models.PositiveIntegerField('Подтверждено',
+                                                  default=0000)
 
     def __str__(self):
         """Метод возвращает имя пользователя"""
@@ -176,17 +179,21 @@ class Subscriber(models.Model):
     Класс Subscriber используется для отправки рассылки
     пользователям подписанным на неё
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE,
-                                related_name="subscriber")
 
-    class Meta:
-        """Класс формирующий название в единственном и множественном числах"""
-        verbose_name = 'Подписчик'
-        verbose_name_plural = 'Подписчики'
 
-    def __str__(self):
-        """Метод возвращает имя пользователя"""
-        return self.user.username
+user = models.OneToOneField(User, on_delete=models.CASCADE,
+                            related_name="subscriber")
+
+
+class Meta:
+    """Класс формирующий название в единственном и множественном числах"""
+    verbose_name = 'Подписчик'
+    verbose_name_plural = 'Подписчики'
+
+
+def __str__(self):
+    """Метод возвращает имя пользователя"""
+    return self.user.username
 
 
 def sending_html_mail(subject, text_content, html_content, from_email, to_list):
@@ -206,13 +213,14 @@ def get_subscriber(sender, instance, created, **kwargs):
         text_content = new_product_email_template.text_content + {
             instance.title} + new_product_email_template.text_content_url + {
                            instance.get_absolute_url()}
-    html_content = f'''
-            <ul>
-                <li>Название: {instance.title}</li>
-                <li>Цена: {instance.price}</li>
-            </ul>
-            Подробности можно получить по 
-            <a href="{instance.get_absolute_url()}">ссылке</a>.
-        '''
+        html_content = f'''
+        <ul>
+            <li>Название: {instance.title}</li>
+            <li>Цена: {instance.price}</li>
+        </ul>
+        Подробности можно получить по 
+        <a href="{instance.get_absolute_url()}">ссылке</a>.
+    '''
+
     from_email = new_product_email_template.from_email
     sending_html_mail(subject, text_content, html_content, from_email, emails)
