@@ -176,24 +176,20 @@ class SMSConfirm(models.Model):
 
 class Subscriber(models.Model):
     """
-    Класс Subscriber используется для отправки рассылки
-    пользователям подписанным на неё
+    Класс Subscriber используется для отправки
+    рассылки пользователям подписанным на неё
     """
+    user = models.OneToOneField(User, on_delete=models.CASCADE,
+                                related_name="subscriber")
 
+    class Meta:
+        """Класс формирующий название в единственном и множественном числах"""
+        verbose_name = 'Подписчик'
+        verbose_name_plural = 'Подписчики'
 
-user = models.OneToOneField(User, on_delete=models.CASCADE,
-                            related_name="subscriber")
-
-
-class Meta:
-    """Класс формирующий название в единственном и множественном числах"""
-    verbose_name = 'Подписчик'
-    verbose_name_plural = 'Подписчики'
-
-
-def __str__(self):
-    """Метод возвращает имя пользователя"""
-    return self.user.username
+    def __str__(self):
+        """Метод возвращает имя пользователя"""
+        return self.user.username
 
 
 def sending_html_mail(subject, text_content, html_content, from_email, to_list):
@@ -204,23 +200,19 @@ def sending_html_mail(subject, text_content, html_content, from_email, to_list):
 
 @receiver(post_save, sender=Product)
 def get_subscriber(sender, instance, created, **kwargs):
-    subject = ''
-    text_content = ''
-    emails = []
     if created:
         emails = [e.user.email for e in Subscriber.objects.all()]
         subject = new_product_email_template.subject + {instance.title}
         text_content = new_product_email_template.text_content + {
             instance.title} + new_product_email_template.text_content_url + {
                            instance.get_absolute_url()}
-        html_content = f'''
-        <ul>
-            <li>Название: {instance.title}</li>
-            <li>Цена: {instance.price}</li>
-        </ul>
-        Подробности можно получить по 
-        <a href="{instance.get_absolute_url()}">ссылке</a>.
-    '''
-
+    html_content = f'''
+            <ul>
+                <li>Название: {instance.title}</li>
+                <li>Цена: {instance.price}</li>
+            </ul>
+            Подробности можно получить по 
+            <a href="{instance.get_absolute_url()}">ссылке</a>.
+        '''
     from_email = new_product_email_template.from_email
     sending_html_mail(subject, text_content, html_content, from_email, emails)
