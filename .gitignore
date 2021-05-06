@@ -209,10 +209,10 @@ ENV/
 
 # mkdocs documentation
 /site
-/thinktetika/manage.py
+#/thinktetika/manage.py
 /.gitconfig
 /thinktetika/thinktetika/
-/thinktetika/main/migrations/
+#/thinktetika/main/migrations/
 /thinktetika/main/static/
 /thinktetika/thinktetika/migrations/
 /thinktetika/main/templatetags/__init__.py

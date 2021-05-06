@@ -6,10 +6,12 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
+from django.contrib.postgres.search import SearchVector
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView, ListView, UpdateView, CreateView, TemplateView
+from django.views.generic import DetailView, ListView, UpdateView, CreateView, \
+    TemplateView
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -23,7 +25,8 @@ from .tasks import sending_new_products_by_scheduler, send_phone_code
 import logging
 
 from .forms import UserForm, ProfileForm
-from .models import Product, Tag, Profile, Subscriber
+from .models import Product, Profile, Subscriber
+from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
 
 logger = logging.getLogger(__name__)
 
@@ -34,7 +37,10 @@ class IndexView(TemplateView):
     template_name = 'pages/index.html'
 
     def get_context_data(self, **kwargs):
-        """Метод ответсвенный за вывод главной страницы и отправку сообщений о новинках недели по расписанию."""
+        """
+        Метод ответсвенный за вывод главной страницы
+        и отправку сообщений о новинках недели по расписанию.
+        """
         context = super(IndexView, self).get_context_data(**kwargs)
         sending_new_products_by_scheduler()
         return context
@@ -42,29 +48,36 @@ class IndexView(TemplateView):
 
 @method_decorator(cache_page(CACHE_TTL), name='dispatch')
 class GoodsListView(ListView):
-    """класс GoodsListView выводит список товаров из таблицы Product в шаблон pages/goods.html
-        с разбивкой по 10 товаров на страницу
+    """
+    класс GoodsListView выводит список товаров из таблицы Product
+    в шаблон pages/goods.html
+    с разбивкой по 10 товаров на страницу
     """
     model = Product
     template_name = 'pages/goods.html'
     paginate_by = 10
+    context_object_name = "goods"
 
     def get_queryset(self):
-        """Получаем и передаём данные по товарам отфильтрованные по полю tags, если оно не пустое.
-        Если пустое передаём все товары"""
-        queryset = super(GoodsListView, self).get_queryset()
-        tag = self.request.GET.get("tag")
-        if tag is not None:
-            return queryset.filter(tags__title=tag).order_by("id")
-        return queryset
+        qs = super().get_queryset()
+        qs = qs.filter(is_published=True)
+        if s := self.request.GET.get('s'):
+            qs = qs.annotate(search=SearchVector(
+                'title', 'description'), ).filter(search=s)
+
+        if query := self.request.GET.get('tag'):
+            return qs.filter(tags__name=query)
+        else:
+            return qs
 
     def get_context_data(self, **kwargs):
-        """Получаем список тегов и передаём в адресную строку браузера часть запроса содержащий необходимый тег."""
-        context = super(GoodsListView, self).get_context_data(**kwargs)
-        context["tags_list"] = Tag.objects.all()
-        tag = self.request.GET.get("tag")
-        if tag:
-            context["tags_url"] = "tag={}&".format(tag)
+        """
+        Получаем список тегов и передаём в адресную строку браузера часть
+        запроса содержащий необходимый тег.
+        """
+        context = super().get_context_data(**kwargs)
+        query = self.request.GET.get('tag') or ""
+        context['tag'] = query
         return context
 
     def post(self, request, *args, **kwargs):
@@ -73,7 +86,8 @@ class GoodsListView(ListView):
             if mailing == 'subscribe':
                 Subscriber.objects.create(user=request.user)
             elif mailing == 'unsubscribe':
-                subscriber = Subscriber.objects.filter(user_id=request.user.pk).first()
+                subscriber = Subscriber.objects.filter(
+                    user_id=request.user.pk).first()
                 if subscriber:
                     subscriber.delete()
 
@@ -81,7 +95,10 @@ class GoodsListView(ListView):
 
 
 class GoodsDetalView(DetailView):
-    """класс GoodsDetalView выводит данные по единице товара из таблицы Product в шаблон good-detail.html"""
+    """
+    класс GoodsDetalView выводит данные по единице товара
+    из таблицы Product в шаблон good-detail.html
+    """
     model = Product
     template_name = 'pages/good-detail.html'
     success_url = '/goods/'
@@ -90,6 +107,8 @@ class GoodsDetalView(DetailView):
         """ Метод передаёт в шаблон кешированное количество просмотров товара"""
         context = super().get_context_data(**kwargs)
         good_object = self.get_object()
+        good_object.browsing_count += 1
+        good_object.save()
         object_count_key = f"object_{good_object.id}_count"
         object_count = cache.get(object_count_key, 0)
         object_count += 1
@@ -99,7 +118,10 @@ class GoodsDetalView(DetailView):
 
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
-    """Класс ProfileUpdate используется в шаблоне pages/profile.html и доступно по адресу /accounts/profile/"""
+    """
+    Класс ProfileUpdate используется в шаблоне
+    pages/profile.html и доступно по адресу /accounts/profile/
+    """
     model = User
     form_class = UserForm
     template_name = 'pages/profile.html'
@@ -112,7 +134,8 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         """Метод получает и возвращает данные из формы"""
         context = super().get_context_data(**kwargs)
-        context['profile_form'] = ProfileForm(instance=self.get_object(kwargs['request']))
+        context['profile_form'] = ProfileForm(
+            instance=self.get_object(kwargs['request']))
         return context
 
     def get(self, request, *args, **kwargs):
@@ -149,10 +172,14 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
                 )
 
     def post(self, request, *args, **kwargs):
-        """Метод возвращает шаблон с переданным словарём или ошибку заполнения формы"""
+        """
+        Метод возвращает шаблон с переданным
+        словарём или ошибку заполнения формы
+        """
         self.object = self.get_object(request)
         form = self.get_form()
-        profile_form = ProfileForm(self.request.POST, self.request.FILES, instance=self.object)
+        profile_form = ProfileForm(self.request.POST, self.request.FILES,
+                                   instance=self.object)
         if form.is_valid():
             return self.form_valid_formset(form, profile_form)
         else:
