@@ -5,10 +5,34 @@ from django.contrib.flatpages.admin import FlatPageAdmin
 from django.contrib.flatpages.models import FlatPage
 from django.utils.html import format_html
 
-from main.models import Category, Contacts, Product, Size, Seller, Tag, Profile
+from django.db.models import QuerySet, Model
+from django.http import HttpRequest
+
+from main.models import Category, Contacts, Product, Size, Seller, Profile
 
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage)
+
+
+class ArrayFieldListFilter(admin.SimpleListFilter):
+    """
+    Класс отвечающий за фильтрацию по тегам
+    """
+
+    title = 'Tags'
+    parameter_name = 'tags'
+
+    def lookups(self, request: HttpRequest, model_admin: Model):
+        tags = Product.objects.values_list("tags", flat=True)
+        tags = [(x, x) for sublist in tags for x in sublist if x]
+        tags = sorted(set(tags))
+        return tags
+
+    def queryset(self, request: HttpRequest, queryset: QuerySet):
+        lookup_value = self.value()
+        if lookup_value:
+            queryset = queryset.filter(tags__contains=[lookup_value])
+        return queryset
 
 
 class FlatPageAdminForm(forms.ModelForm):
@@ -74,7 +98,7 @@ class ProductAdmin(admin.ModelAdmin):
         "is_archive",
         "is_published",
     )
-    list_filter = ("tags", "pub_date", "category")
+    list_filter = (ArrayFieldListFilter, "pub_date", "category")
     readonly_fields = ("image",)
     search_fields = ("title", "description", "category",)
     list_editable = ("is_published", "is_archive",)
@@ -87,18 +111,19 @@ class ProductAdmin(admin.ModelAdmin):
     get_image.short_description = "Изображение"
 
 
-class TagAdmin(admin.ModelAdmin):
-    list_display = ("title",)
+# class TagAdmin(admin.ModelAdmin):
+#     list_display = ("title",)
 
 
 admin.site.register(Category)
 admin.site.register(Contacts)
 admin.site.register(Size)
 admin.site.register(Seller)
-admin.site.register(Tag)
+
+
+# admin.site.register(Tag)
 
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ("user", "birth_date")
-

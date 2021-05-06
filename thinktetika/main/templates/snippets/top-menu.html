@@ -23,7 +23,8 @@
                 {% endif %}
                 {% endfor %}
             </ul>
-            <form class="d-flex">
+
+            <form class="d-flex" action = "{% url 'goods' %}">
                 {% if user.is_authenticated %}
                 {% thumbnail user.profile.avatar "30x30" crop="center" as im %}
                 <a href="{% url 'profile-update' %}">
@@ -36,7 +37,7 @@
                                     <atrong><li class="nav-item">
                         <a class="nav-link" href="{% url 'account_signup' %}">Регистрация</a></li></atrong>
                 {% endif%}
-                <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
+                <input class="form-control me-2" type="text" placeholder="Поиск" aria-label="Search" name="s">
                 <button class="btn btn-outline-success" type="submit">Поиск</button>
             </form>
         </div>

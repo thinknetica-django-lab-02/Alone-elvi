@@ -70,20 +70,20 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
 
 
-class Tag(models.Model):
-    """Класс Tag, хранит тэги товара.
-    Может быть связан с классом Product по полю tag с отношением многие ко многим.
-    """
-    title = models.CharField('Название', max_length=50, default='', unique=True)
-
-    def __str__(self):
-        """Метод возвращает название запрашиваемого тега."""
-        return self.title
-
-    class Meta:
-        """Класс формирующий название в единственном и множественном числах"""
-        verbose_name = 'Тег'
-        verbose_name_plural = 'Теги'
+# class Tag(models.Model):
+#     """Класс Tag, хранит тэги товара.
+#     Может быть связан с классом Product по полю tag с отношением многие ко многим.
+#     """
+#     title = models.CharField('Название', max_length=50, default='', unique=True)
+#
+#     def __str__(self):
+#         """Метод возвращает название запрашиваемого тега."""
+#         return self.title
+#
+#     class Meta:
+#         """Класс формирующий название в единственном и множественном числах"""
+#         verbose_name = 'Тег'
+#         verbose_name_plural = 'Теги'
 
 
 class Seller(models.Model):
@@ -114,9 +114,10 @@ class Product(models.Model):
                               blank=True)
     size = models.ForeignKey('Size', on_delete=models.CASCADE)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    tags = ArrayField(
-        models.CharField(max_length=50, blank=True),
-        default=list, verbose_name='Теги')
+
+    tags = ArrayField(models.CharField(max_length=50, blank=True), default=list,
+                      size=8, blank=True)
+
     weight = models.DecimalField('Вес', max_digits=10, decimal_places=2)
     quantity = models.DecimalField('Количество', max_digits=10,
                                    decimal_places=2)

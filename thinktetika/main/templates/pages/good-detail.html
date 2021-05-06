@@ -4,6 +4,7 @@
     <h2> Наименование : {{ object.title|default:"Наименование не определено" }} </h2>
     <p> Артикул: {{object.sku }}</p>
     <p> Размер: {{object.size }}</p>
+    <p> Размер: {{object.description }}</p>
     <p> Категория: {{object.category }}</p>
     {% thumbnail object.image "100x100" crop="center" as im %}
         <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
