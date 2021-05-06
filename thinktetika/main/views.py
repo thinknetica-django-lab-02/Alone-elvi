@@ -26,6 +26,7 @@ import logging
 
 from .forms import UserForm, ProfileForm
 from .models import Product, Profile, Subscriber
+from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
 
 logger = logging.getLogger(__name__)
 
@@ -106,6 +107,8 @@ class GoodsDetalView(DetailView):
         """ Метод передаёт в шаблон кешированное количество просмотров товара"""
         context = super().get_context_data(**kwargs)
         good_object = self.get_object()
+        good_object.browsing_count += 1
+        good_object.save()
         object_count_key = f"object_{good_object.id}_count"
         object_count = cache.get(object_count_key, 0)
         object_count += 1

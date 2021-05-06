@@ -1,10 +1,9 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
-from django.utils.timezone import now
 from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.dispatch import receiver
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import post_save
 
 from django.utils import timezone
 
@@ -70,22 +69,6 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
 
 
-# class Tag(models.Model):
-#     """Класс Tag, хранит тэги товара.
-#     Может быть связан с классом Product по полю tag с отношением многие ко многим.
-#     """
-#     title = models.CharField('Название', max_length=50, default='', unique=True)
-#
-#     def __str__(self):
-#         """Метод возвращает название запрашиваемого тега."""
-#         return self.title
-#
-#     class Meta:
-#         """Класс формирующий название в единственном и множественном числах"""
-#         verbose_name = 'Тег'
-#         verbose_name_plural = 'Теги'
-
-
 class Seller(models.Model):
     """Класс Seller хранит данные о продавце,
      связан с классом Contacts по полю contacts.
@@ -129,6 +112,7 @@ class Product(models.Model):
                                          blank=True)
     is_published = models.BooleanField('Опубликовано', default=False)
     is_archive = models.BooleanField('Архивный', default=False)
+    browsing_count = models.IntegerField('Просмотры кол-во', default=0)
 
     def __str__(self):
         """Метод возвращает название запрашиваемого товара."""
@@ -141,6 +125,21 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return f'/goods/{self.pk}/'
+
+
+class ProductBrowsing(models.Model):
+    """
+    Класс представления отчета просмотра отдельных записей товаров
+    """
+    title = models.CharField('Наименование', max_length=150, unique=True)
+    sku = models.CharField('Артикул', max_length=20, default='')
+    image = models.ImageField('Изображение', upload_to='products/', null=True,
+                              blank=True)
+    size = models.ForeignKey('Size', on_delete=models.CASCADE)
+
+    class Meta:
+        managed = False
+        db_table = 'product_browsing'
 
 
 class Profile(models.Model):
