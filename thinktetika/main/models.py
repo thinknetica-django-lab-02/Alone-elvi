@@ -116,8 +116,7 @@ class Product(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     tags = ArrayField(
         models.CharField(max_length=50, blank=True),
-        default=list, verbose_name='Теги'
-    )
+        default=list, verbose_name='Теги')
     weight = models.DecimalField('Вес', max_digits=10, decimal_places=2)
     quantity = models.DecimalField('Количество', max_digits=10,
                                    decimal_places=2)
