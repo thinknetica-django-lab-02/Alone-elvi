@@ -1,4 +1,4 @@
-{% extends 'pages/base.html' %}
+{% extends request.mobile_version|yesno:'pages/base_mobile.html,pages/base.html' %}
 {% block header%}
     {% include "pages/header.html" with turn_on_block=turn_on_block username=username%}
 {% endblock %}
