@@ -200,6 +200,9 @@ def sending_html_mail(subject, text_content, html_content, from_email, to_list):
 
 @receiver(post_save, sender=Product)
 def get_subscriber(sender, instance, created, **kwargs):
+    emails = []
+    subject = ''
+    text_content = ''
     if created:
         emails = [e.user.email for e in Subscriber.objects.all()]
         subject = new_product_email_template.subject + {instance.title}
