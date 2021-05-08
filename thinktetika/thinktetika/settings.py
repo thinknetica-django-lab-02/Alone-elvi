@@ -70,7 +70,6 @@ INSTALLED_APPS = [
 
     # phone_field
     'phone_field',
-
 ]
 
 MIDDLEWARE = [

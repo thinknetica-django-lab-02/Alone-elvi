@@ -42,7 +42,11 @@ class IndexView(TemplateView):
         и отправку сообщений о новинках недели по расписанию.
         """
         context = super(IndexView, self).get_context_data(**kwargs)
+        context['description'] = "Главная - сайта магазина"
+        for context_item in context:
+            logger.warning("get_context_data -> context {}".format(context_item.title))
         sending_new_products_by_scheduler()
+
         return context
 
 
@@ -78,6 +82,8 @@ class GoodsListView(ListView):
         context = super().get_context_data(**kwargs)
         query = self.request.GET.get('tag') or ""
         context['tag'] = query
+        context['description'] = context['goods']
+
         return context
 
     def post(self, request, *args, **kwargs):
@@ -102,6 +108,7 @@ class GoodsDetalView(DetailView):
     model = Product
     template_name = 'pages/good-detail.html'
     success_url = '/goods/'
+    context_object_name = "good"
 
     def get_context_data(self, **kwargs):
         """ Метод передаёт в шаблон кешированное количество просмотров товара"""
@@ -114,6 +121,8 @@ class GoodsDetalView(DetailView):
         object_count += 1
         cache.set(object_count_key, object_count, timeout=60)
         context['object_count'] = object_count
+        context['description'] = context['good']
+
         return context
 
 

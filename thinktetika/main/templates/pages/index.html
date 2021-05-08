@@ -1,21 +1,49 @@
 {% extends request.mobile_version|yesno:'pages/base_mobile.html,pages/base.html' %}
 {% block header%}
-    {% include "pages/header.html" with turn_on_block=turn_on_block username=username%}
+{% include "pages/header.html" with turn_on_block=turn_on_block username=username%}
 {% endblock %}
 {% block content %}
 
-    {% if turn_on_block %}
-    <div class="row-fluid">
-        <h2>Блок который появляется</h2>
-    </div>
-    {% endif%}
+{% if turn_on_block %}
+<div class="row-fluid">
 
-    <div class="row">
-        <div class="text-center">
-            {% load main_tags_filters %}
-            {% server_current_time as the_time %}
-            <p>Текущее время сервера: {{ the_time }}.</p>
-            <p>{{ "Привет мир!"|change_first_last_chars_in_string }}</p>
-        </div>
+    <h2>Блок который появляется</h2>
+</div>
+{% endif%}
+
+<div class="row">
+    <div class="text-center">
+        <h1>Главная</h1>
+        {% load main_tags_filters %}
+        {% server_current_time as the_time %}
+        <p>Текущее время сервера: {{ the_time }}.</p>
+        <p>{{ "Привет мир!"|change_first_last_chars_in_string }}</p>
     </div>
+</div>
 {% endblock %}
+{% block ld_json %}
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Shop",
+        "name": "Организация интернет-магазина",
+        "alternateName": "Интернет-магазин",
+        "description": "Продажа товаров и услуг населению",
+        "url": "http://john-dow-shop.shop",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "RU",
+            "addressLocality": "Moscow",
+            "addressRegion": "Moscow",
+            "postalCode": "000000",
+            "streetAddress": "Somewhere street, Moscow, "
+        },
+        "email": "info@john-dow-shop.shop",
+        "phone": "+7322223322",
+        "sameAs": [
+            "https://www.instagram.com/john-dow-shop/"
+        ]
+    }
+</script>
+{% endblock %}
+

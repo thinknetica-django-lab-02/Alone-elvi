@@ -2,7 +2,7 @@
 
 {% load thumbnail %}
 {% block content %}
-    <h2> Наименование : {{ object.title|default:"Наименование не определено" }} </h2>
+    <h1>{{ object.title|default:"Наименование не определено" }} </h1>
     <p> Артикул: {{object.sku }}</p>
     <p> Размер: {{object.size }}</p>
     <p> Размер: {{object.description }}</p>
