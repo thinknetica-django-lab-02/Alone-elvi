@@ -1,4 +1,32 @@
-{% extends 'pages/base.html' %}
+{% extends request.mobile_version|yesno:'pages/base_mobile.html,pages/base.html' %}
+
 {% block content %}
+<h1>{{ flatpage.title }}</h1>
 {{ flatpage.content }}
+{% endblock %}
+
+{% block ld_json %}
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Contacts",
+        "name": "Организация интернет-магазина",
+        "alternateName": "Интернет-магазин",
+        "description": "Продажа товаров и услуг населению",
+        "url": "http://john-dow-shop.shop",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "RU",
+            "addressLocality": "Moscow",
+            "addressRegion": "Moscow",
+            "postalCode": "000000",
+            "streetAddress": "Somewhere street, Moscow, "
+        },
+        "email": "info@john-dow-shop.shop",
+        "phone": "+7322223322",
+        "sameAs": [
+            "https://www.instagram.com/john-dow-shop/"
+        ]
+    }
+</script>
 {% endblock %}
