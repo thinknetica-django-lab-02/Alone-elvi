@@ -4,28 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="{{ description }}">
-    <title>{{ flatpage }}</title>
+    <title>{{ flatpage.title}}</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 </head>
 <body>
 {% block header%}
-{% include "pages/header.html" %}
+    {% include "pages/header.html" %}
 {% endblock %}
 <div class="main">
+    Мобильная версия
     {% load flatpages %}
     <div class="container-fluid text-center mt-4">
         {% block content %}
+
     </div>
     {% endblock %}
 </div>
 </body>
 <footer>
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 </footer>
-<script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
-<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-{% block ld_json %}
-{% endblock %}
 </html>
