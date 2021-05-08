@@ -35,6 +35,7 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 class IndexView(TemplateView):
     template_name = 'pages/index.html'
+    context_object_name = "index"
 
     def get_context_data(self, **kwargs):
         """
@@ -44,7 +45,8 @@ class IndexView(TemplateView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['description'] = "Главная - сайта магазина"
         for context_item in context:
-            logger.warning("get_context_data -> context {}".format(context_item.title))
+            logger.warning(
+                "get_context_data -> context {}".format(context_item.title))
         sending_new_products_by_scheduler()
 
         return context
